@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class RegistroDAO {
     
     public boolean salvar(Registro_usuario registro){
-        String sql = "INSERT INTO Funcionario (nome, cpf, email, senha, data_nascimento, endereco)"  + "VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (nome, cpf, email, senha, data_nascimento, endereco)"  + "VALUES(?, ?, ?, ?, ?, ?)";
     
          try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
