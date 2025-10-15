@@ -12,7 +12,6 @@ public class Registro_usuario {
     private Date nascimento;
     private String email;
     private String senha;
-    private Date data;
     private String endereco;
 
     public Registro_usuario() {
@@ -50,14 +49,6 @@ public class Registro_usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public String getEndereco() {

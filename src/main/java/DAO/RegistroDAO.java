@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class RegistroDAO {
     public boolean salvar(Registro_usuario registro) {
     // A query SQL está correta
-        String sql = "INSERT INTO funcionario (nome, cpf, email, senha, data_nascimento, endereco)" + "VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
 
     // O try-with-resources garante que a conexão será fechada
     try (Connection conexao = Conexao_farmacia.getConnection();

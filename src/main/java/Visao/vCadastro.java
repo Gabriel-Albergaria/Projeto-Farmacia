@@ -213,35 +213,61 @@ public class vCadastro extends javax.swing.JDialog {
 
     private void butConta_criadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConta_criadaActionPerformed
         
-        if (txtSenha.getText().equals(Confirmacao_senha.getText())){
-            confirmacao.setText("deu");
-            lb_criacao.setText("Usuaria criado!");
-            
-            Registro_usuario usuario = new Registro_usuario();
- 
-        try {
-    String dataEmTexto = txtNasc.getText();
-    
-    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-    Date dataDeNascimento = (Date) formatador.parse(dataEmTexto);
-    usuario.setNascimento(dataDeNascimento);
+        if (txtSenha.getText().equals(Confirmacao_senha.getText())) {
+        
+        // As senhas são iguais, então vamos criar e salvar o usuário.
+        
+        // 2. Cria UMA VEZ o objeto que vai guardar os dados
+        Registro_usuario usuario = new Registro_usuario();
 
-        } catch (ParseException e) {
-    javax.swing.JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use dd/mm/aaaa.", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-    return; 
-}
+        // 3. Preenche os dados do usuário a partir dos campos de texto
+        usuario.setNome(txtNome.getText());
+        usuario.setCpf(txtCpf.getText());
         usuario.setEndereco(txtEndereco.getText());
         usuario.setEmail(txtEmail.getText());
         usuario.setSenha(txtSenha.getText());
-        usuario.setNome(txtNome.getText());
-        usuario.setCpf(txtCpf.getText());
-  
-        
-        }else{
-            confirmacao.setText("ndeu");
-            lb_criacao.setText("Usuario não pode ser criado");
+
+        // 4. Converte a data da forma CORRETA
+        try {
+            String dataEmTexto = txtNasc.getText();
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+            
+            // Passo 1: Converte o texto para um java.util.Date (a classe genérica)
+            java.util.Date dataUtil = formatador.parse(dataEmTexto);
+            
+            // Passo 2: Cria um java.sql.Date a partir do java.util.Date
+            java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+            
+            // Passo 3: Define a data no formato correto no objeto usuario
+            usuario.setNascimento(dataSql);
+
+        } catch (ParseException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use dd/mm/aaaa.", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return; // Para a execução aqui se a data for inválida
         }
+
+        // 5. Envia o objeto para o Banco de Dados (PARTE QUE FALTAVA)
+        RegistroDAO registroDAO = new RegistroDAO();
+        boolean salvou = registroDAO.salvar(usuario);
+
+        // 6. Informa o resultado ao usuário
+        if (salvou) {
+            lb_criacao.setText("Usuário criado com sucesso!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
+            // Opcional: fechar a janela ou limpar os campos aqui
+            // this.dispose(); 
+        } else {
+            lb_criacao.setText("Falha ao criar usuário.");
+            javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro. Verifique os dados.", "Erro no Banco de Dados", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
+    } else {
+        // Se as senhas forem diferentes
+        confirmacao.setText("Senhas não conferem!"); // Mensagem mais clara
+        lb_criacao.setText("Usuário não pode ser criado");
+        javax.swing.JOptionPane.showMessageDialog(this, "As senhas digitadas não são iguais.", "Erro de Confirmação", javax.swing.JOptionPane.WARNING_MESSAGE);
+    }
+
         
         
     }//GEN-LAST:event_butConta_criadaActionPerformed
