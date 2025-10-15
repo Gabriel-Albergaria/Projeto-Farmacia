@@ -32,20 +32,29 @@ public class vPrincipal extends javax.swing.JFrame {
         menu = new javax.swing.JMenuBar();
         cadastro_cliente = new javax.swing.JMenu();
         menu_cadastro = new javax.swing.JMenuItem();
+        menu_login = new javax.swing.JMenuItem();
         manutenção = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("teste");
 
-        cadastro_cliente.setText("Cadastro");
+        cadastro_cliente.setText("Opções");
 
-        menu_cadastro.setText("Cidade");
+        menu_cadastro.setText("Cadastro");
         menu_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_cadastroActionPerformed(evt);
             }
         });
         cadastro_cliente.add(menu_cadastro);
+
+        menu_login.setText("Login");
+        menu_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_loginActionPerformed(evt);
+            }
+        });
+        cadastro_cliente.add(menu_login);
 
         menu.add(cadastro_cliente);
 
@@ -72,6 +81,10 @@ public class vPrincipal extends javax.swing.JFrame {
         new vCadastro(this, rootPaneCheckingEnabled).setVisible(true);
        
     }//GEN-LAST:event_menu_cadastroActionPerformed
+
+    private void menu_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_loginActionPerformed
+        new vLogin (this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_menu_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -113,5 +126,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu manutenção;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenuItem menu_cadastro;
+    private javax.swing.JMenuItem menu_login;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,15 +6,23 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="cadastro_cliente">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastro"/>
+            <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menu_cadastro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cidade"/>
+                <Property name="text" type="java.lang.String" value="Cadastro"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_cadastroActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menu_login">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Login"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_loginActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

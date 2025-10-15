@@ -17,15 +17,11 @@ import java.text.SimpleDateFormat;
  */
 public class vCadastro extends javax.swing.JDialog {
 
-    /**
-     * Creates new form D
-     */
     public vCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +31,9 @@ public class vCadastro extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         conteudo = new javax.swing.JPanel();
         lbnome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -54,6 +53,16 @@ public class vCadastro extends javax.swing.JDialog {
         botao = new javax.swing.JPanel();
         butConta_criada = new javax.swing.JButton();
         lb_criacao = new javax.swing.JLabel();
+        selecionar_pessoa = new javax.swing.JComboBox<>();
+
+        jRadioButton1.setText("jRadioButton1");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro cidades");
@@ -101,7 +110,7 @@ public class vCadastro extends javax.swing.JDialog {
                 .addComponent(butConta_criada, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
                 .addComponent(lb_criacao)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         botaoLayout.setVerticalGroup(
             botaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +121,8 @@ public class vCadastro extends javax.swing.JDialog {
                     .addComponent(lb_criacao))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
+
+        selecionar_pessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Cliente" }));
 
         javax.swing.GroupLayout conteudoLayout = new javax.swing.GroupLayout(conteudo);
         conteudo.setLayout(conteudoLayout);
@@ -134,7 +145,6 @@ public class vCadastro extends javax.swing.JDialog {
                             .addComponent(lbcpf))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(conteudoLayout.createSequentialGroup()
                                     .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,14 +152,19 @@ public class vCadastro extends javax.swing.JDialog {
                                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(73, 73, 73))
                                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtNasc, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))))
+                            .addGroup(conteudoLayout.createSequentialGroup()
+                                .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtNasc, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                                .addComponent(selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(conteudoLayout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(confirmacao)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(100, 100, 100))
         );
         conteudoLayout.setVerticalGroup(
             conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,12 +182,17 @@ public class vCadastro extends javax.swing.JDialog {
                         .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbcpf)
                             .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbNasc)
-                            .addComponent(txtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addComponent(lbEndereco)))
+                        .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteudoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbNasc)
+                                    .addComponent(txtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(22, 22, 22)
+                                .addComponent(lbEndereco))
+                            .addGroup(conteudoLayout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(94, 94, 94)
                 .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEmail)
@@ -196,8 +216,7 @@ public class vCadastro extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -214,56 +233,41 @@ public class vCadastro extends javax.swing.JDialog {
     private void butConta_criadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConta_criadaActionPerformed
         
         if (txtSenha.getText().equals(Confirmacao_senha.getText())) {
-        
-        // As senhas são iguais, então vamos criar e salvar o usuário.
-        
-        // 2. Cria UMA VEZ o objeto que vai guardar os dados
-        Registro_usuario usuario = new Registro_usuario();
+            Registro_usuario usuario = new Registro_usuario();
 
-        // 3. Preenche os dados do usuário a partir dos campos de texto
-        usuario.setNome(txtNome.getText());
-        usuario.setCpf(txtCpf.getText());
-        usuario.setEndereco(txtEndereco.getText());
-        usuario.setEmail(txtEmail.getText());
-        usuario.setSenha(txtSenha.getText());
+            usuario.setNome(txtNome.getText());
+            usuario.setCpf(txtCpf.getText());
+            usuario.setEndereco(txtEndereco.getText());
+            usuario.setEmail(txtEmail.getText());
+            usuario.setSenha(txtSenha.getText());
 
-        // 4. Converte a data da forma CORRETA
         try {
-            String dataEmTexto = txtNasc.getText();
+            String dataEmTexto = txtNasc.getText(); // convertendo o bgl de string para data para mandar pro sql
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-            
-            // Passo 1: Converte o texto para um java.util.Date (a classe genérica)
             java.util.Date dataUtil = formatador.parse(dataEmTexto);
-            
-            // Passo 2: Cria um java.sql.Date a partir do java.util.Date
             java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
-            
-            // Passo 3: Define a data no formato correto no objeto usuario
             usuario.setNascimento(dataSql);
 
         } catch (ParseException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use dd/mm/aaaa.", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
-            return; // Para a execução aqui se a data for inválida
+            javax.swing.JOptionPane.showMessageDialog(this, "use dd/mm/aaaa", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return; 
         }
 
-        // 5. Envia o objeto para o Banco de Dados (PARTE QUE FALTAVA)
+       
         RegistroDAO registroDAO = new RegistroDAO();
-        boolean salvou = registroDAO.salvar(usuario);
+        boolean salvou = registroDAO.salvar(usuario); //teste se salvou no sql
 
-        // 6. Informa o resultado ao usuário
         if (salvou) {
-            lb_criacao.setText("Usuário criado com sucesso!");
-            javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
-            // Opcional: fechar a janela ou limpar os campos aqui
-            // this.dispose(); 
+            lb_criacao.setText("Usuário criado");
+            javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado");
+ 
         } else {
             lb_criacao.setText("Falha ao criar usuário.");
             javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro. Verifique os dados.", "Erro no Banco de Dados", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
 
     } else {
-        // Se as senhas forem diferentes
-        confirmacao.setText("Senhas não conferem!"); // Mensagem mais clara
+        confirmacao.setText("Senhas não conferem!");
         lb_criacao.setText("Usuário não pode ser criado");
         javax.swing.JOptionPane.showMessageDialog(this, "As senhas digitadas não são iguais.", "Erro de Confirmação", javax.swing.JOptionPane.WARNING_MESSAGE);
     }
@@ -327,6 +331,9 @@ public class vCadastro extends javax.swing.JDialog {
     private javax.swing.JButton butConta_criada;
     private javax.swing.JLabel confirmacao;
     private javax.swing.JPanel conteudo;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbConfirmacao_senha;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbEndereco;
@@ -335,6 +342,7 @@ public class vCadastro extends javax.swing.JDialog {
     private javax.swing.JLabel lb_criacao;
     private javax.swing.JLabel lbcpf;
     private javax.swing.JLabel lbnome;
+    private javax.swing.JComboBox<String> selecionar_pessoa;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
