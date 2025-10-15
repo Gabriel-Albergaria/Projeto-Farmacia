@@ -4,7 +4,11 @@
  */
 package Visao;
 
+import DAO.RegistroDAO;
 import Modelo.Registro_usuario;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -212,17 +216,33 @@ public class vCadastro extends javax.swing.JDialog {
         if (txtSenha.getText().equals(Confirmacao_senha.getText())){
             confirmacao.setText("deu");
             lb_criacao.setText("Usuaria criado!");
+            
+            Registro_usuario usuario = new Registro_usuario();
+ 
+        try {
+    String dataEmTexto = txtNasc.getText();
+    
+    SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    Date dataDeNascimento = (Date) formatador.parse(dataEmTexto);
+    usuario.setNascimento(dataDeNascimento);
+
+        } catch (ParseException e) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Formato de data inválido! Por favor, use dd/mm/aaaa.", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+    return; 
+}
+        usuario.setEndereco(txtEndereco.getText());
+        usuario.setEmail(txtEmail.getText());
+        usuario.setSenha(txtSenha.getText());
+        usuario.setNome(txtNome.getText());
+        usuario.setCpf(txtCpf.getText());
+  
+        
         }else{
             confirmacao.setText("ndeu");
             lb_criacao.setText("Usuario não pode ser criado");
         }
-        Registro_usuario usuario = new Registro_usuario();
-        usuario.setNome(txtNome.getText());
-        usuario.setCpf(txtCpf.getText());
-        usuario.setNascimento(txtNasc.getText());
-        usuario.setEndereco(txtEndereco.getText());
-        usuario.setEmail(txtEmail.getText());
-        usuario.setSenha(txtSenha.getText());
+        
         
     }//GEN-LAST:event_butConta_criadaActionPerformed
 

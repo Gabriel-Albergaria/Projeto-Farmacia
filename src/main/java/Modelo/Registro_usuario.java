@@ -9,7 +9,7 @@ import java.sql.Date;
 public class Registro_usuario {
     private String nome; 
     private String cpf;
-    private String nascimento;
+    private Date nascimento;
     private String email;
     private String senha;
     private Date data;
@@ -68,11 +68,11 @@ public class Registro_usuario {
         this.endereco = endereco;
     }
 
-    public String getNascimento() {
+    public Date getNascimento() {
         return nascimento;
     }
 
-    public void setNascimento(String nascimento) {
+    public void setNascimento(Date nascimento) {
         this.nascimento = nascimento;
     }
     
