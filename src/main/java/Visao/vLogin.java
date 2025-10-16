@@ -16,7 +16,7 @@ public class vLogin extends javax.swing.JDialog {
     /**
      * Creates new form vLogin
      */
-    public vLogin(java.awt.Frame parent, boolean modal, vPrincipal principal) {
+    public vLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.tela_antiga = (vPrincipal) parent;
@@ -150,6 +150,7 @@ public class vLogin extends javax.swing.JDialog {
         if(teste_login){
             javax.swing.JOptionPane.showMessageDialog(this,"login realizado");
             new vAreaTrabalho().setVisible(true);
+            this.tela_antiga.dispose();
             this.dispose();
             
     
