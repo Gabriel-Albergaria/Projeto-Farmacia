@@ -34,16 +34,20 @@ public class vLogin extends javax.swing.JDialog {
         txtlogin_email = new javax.swing.JTextField();
         lbllogin_senha = new javax.swing.JLabel();
         txtlogin_senha = new javax.swing.JTextField();
+        login_selecionar_pessoa = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         confirmacao_login = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Login");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         lbllogin_email.setText("Email: ");
 
         lbllogin_senha.setText("Senha:");
+
+        login_selecionar_pessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionário", "Cliente" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,15 +65,22 @@ public class vLogin extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txtlogin_senha)))
-                .addContainerGap(494, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addComponent(login_selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(145, 145, 145))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbllogin_email)
-                    .addComponent(txtlogin_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbllogin_email)
+                            .addComponent(txtlogin_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(login_selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbllogin_senha)
@@ -106,12 +117,10 @@ public class vLogin extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,15 +135,18 @@ public class vLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmacao_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmacao_loginActionPerformed
+        String pessoa = login_selecionar_pessoa.getSelectedItem().toString();
         String email = txtlogin_email.getText().trim();
         String senha = txtlogin_senha.getText().trim();
         BuscarDAO buscar = new BuscarDAO();
-        boolean teste_login = buscar.loginFunc(email, senha);
+        boolean teste_login = buscar.loginFunc(email, senha, pessoa);
         
 
         
         if(teste_login){
             javax.swing.JOptionPane.showMessageDialog(this,"login realizado");
+            this.dispose();
+    
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,"login não realizado");
         }
@@ -189,6 +201,7 @@ public class vLogin extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbllogin_email;
     private javax.swing.JLabel lbllogin_senha;
+    private javax.swing.JComboBox<String> login_selecionar_pessoa;
     private javax.swing.JTextField txtlogin_email;
     private javax.swing.JTextField txtlogin_senha;
     // End of variables declaration//GEN-END:variables

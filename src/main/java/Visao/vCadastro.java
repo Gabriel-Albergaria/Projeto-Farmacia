@@ -65,7 +65,7 @@ public class vCadastro extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro cidades");
+        setTitle("Cadastro Usuários");
 
         conteudo.setBackground(new java.awt.Color(255, 255, 255));
         conteudo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -122,7 +122,7 @@ public class vCadastro extends javax.swing.JDialog {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        selecionar_pessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionario", "Cliente" }));
+        selecionar_pessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionário", "Cliente" }));
 
         javax.swing.GroupLayout conteudoLayout = new javax.swing.GroupLayout(conteudo);
         conteudo.setLayout(conteudoLayout);
@@ -231,7 +231,7 @@ public class vCadastro extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butConta_criadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butConta_criadaActionPerformed
-        
+
         if (txtSenha.getText().equals(Confirmacao_senha.getText())) {
             Registro_usuario usuario = new Registro_usuario();
 
@@ -253,13 +253,14 @@ public class vCadastro extends javax.swing.JDialog {
             return; 
         }
 
-       
+        String pessoa = selecionar_pessoa.getSelectedItem().toString();
         RegistroDAO registroDAO = new RegistroDAO();
-        boolean salvou = registroDAO.salvar(usuario); //teste se salvou no sql
+        boolean salvou = registroDAO.salvar(usuario, pessoa); //teste se salvou no sql
 
         if (salvou) {
             lb_criacao.setText("Usuário criado");
             javax.swing.JOptionPane.showMessageDialog(this, "Cadastro realizado");
+            this.dispose(); 
  
         } else {
             lb_criacao.setText("Falha ao criar usuário.");

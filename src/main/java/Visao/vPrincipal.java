@@ -29,62 +29,59 @@ public class vPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        but_login = new javax.swing.JButton();
+        but_cadastro = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
-        cadastro_cliente = new javax.swing.JMenu();
-        menu_cadastro = new javax.swing.JMenuItem();
-        menu_login = new javax.swing.JMenuItem();
-        manutenção = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("teste");
+        setTitle("Farmácia do Paulo");
 
-        cadastro_cliente.setText("Opções");
-
-        menu_cadastro.setText("Cadastro");
-        menu_cadastro.addActionListener(new java.awt.event.ActionListener() {
+        but_login.setText("Login");
+        but_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_cadastroActionPerformed(evt);
+                but_loginActionPerformed(evt);
             }
         });
-        cadastro_cliente.add(menu_cadastro);
 
-        menu_login.setText("Login");
-        menu_login.addActionListener(new java.awt.event.ActionListener() {
+        but_cadastro.setText("Cadastro");
+        but_cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_loginActionPerformed(evt);
+                but_cadastroActionPerformed(evt);
             }
         });
-        cadastro_cliente.add(menu_login);
-
-        menu.add(cadastro_cliente);
-
-        manutenção.setText("Manutenção");
-        menu.add(manutenção);
-
         setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 747, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(284, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(but_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(but_cadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                .addGap(272, 272, 272))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(but_login, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(but_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cadastroActionPerformed
-        new vCadastro(this, rootPaneCheckingEnabled).setVisible(true);
-       
-    }//GEN-LAST:event_menu_cadastroActionPerformed
-
-    private void menu_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_loginActionPerformed
+    private void but_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_loginActionPerformed
         new vLogin (this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_menu_loginActionPerformed
+    }//GEN-LAST:event_but_loginActionPerformed
+
+    private void but_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroActionPerformed
+        new vCadastro(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_but_cadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,10 +119,8 @@ public class vPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu cadastro_cliente;
-    private javax.swing.JMenu manutenção;
+    private javax.swing.JButton but_cadastro;
+    private javax.swing.JButton but_login;
     private javax.swing.JMenuBar menu;
-    private javax.swing.JMenuItem menu_cadastro;
-    private javax.swing.JMenuItem menu_login;
     // End of variables declaration//GEN-END:variables
 }

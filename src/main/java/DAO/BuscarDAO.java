@@ -15,9 +15,19 @@ import java.sql.ResultSet;
  * @author Gabriel
  */
 public class BuscarDAO {
-    public boolean loginFunc(String email, String senha){
+    public boolean loginFunc(String email, String senha, String pessoa){
+       String sql = "";
+       String senha_selecionar = "";
+        if(pessoa.equals("Funcionário")){
+            sql = "SELECT senha_func FROM funcionario WHERE email_func = ?";
+            senha_selecionar = "senha_func";
+        }else if (pessoa.equals("Cliente")){
+            sql = "SELECT senha_cliente FROM cliente WHERE email_cliente = ?";
+            senha_selecionar = "senha_cliente";
+        }else{
+            System.err.println("pessoa inválido: " + pessoa); 
+        }
         
-        String sql = "SELECT senha_func FROM funcionario WHERE email_func = ?";
         
         
         try (Connection conexao = Conexao_farmacia.getConnection();
@@ -28,7 +38,7 @@ public class BuscarDAO {
             ResultSet busca = stmt.executeQuery();
             
              if (busca.next()) {
-                 String senhaDoBanco = busca.getString("senha_func");
+                 String senhaDoBanco = busca.getString(senha_selecionar);
                  
                  if (senha.equals(senhaDoBanco)) {
                     return true; 

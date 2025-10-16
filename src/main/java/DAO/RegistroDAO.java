@@ -14,8 +14,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RegistroDAO {
-    public boolean salvar(Registro_usuario registro) {
-        String sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
+    public boolean salvar(Registro_usuario registro, String pessoa) {
+        String sql ="";
+        if(pessoa.equals("Funcionário")){
+            sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
+        }else if (pessoa.equals("Cliente")){
+            sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, email_cliente, senha_cliente, data_nascimento, endereço_cliente)" + "VALUES(?, ?, ?, ?, ?, ?)";
+        }else{
+            System.err.println("pessoa inválido: " + pessoa);      
+        }
 
     // O try-with-resources garante que a conexão será fechada
     try (Connection conexao = Conexao_farmacia.getConnection();
