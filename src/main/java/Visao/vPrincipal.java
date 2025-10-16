@@ -76,7 +76,8 @@ public class vPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void but_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_loginActionPerformed
-        new vLogin (this, rootPaneCheckingEnabled).setVisible(true);
+        vLogin tela_login = new vLogin(this, true);
+        tela_login.setVisible(true);
     }//GEN-LAST:event_but_loginActionPerformed
 
     private void but_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastroActionPerformed

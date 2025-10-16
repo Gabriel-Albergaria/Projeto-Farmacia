@@ -8,10 +8,13 @@ package DAO;
  *
  * @author Gabriel
  */
+import Modelo.Registro_fornecedor;
 import Modelo.Registro_usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegistroDAO {
     public boolean salvar(Registro_usuario registro, String pessoa) {
@@ -20,7 +23,10 @@ public class RegistroDAO {
             sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
         }else if (pessoa.equals("Cliente")){
             sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, email_cliente, senha_cliente, data_nascimento, endereço_cliente)" + "VALUES(?, ?, ?, ?, ?, ?)";
-        }else{
+        }else if(pessoa.equals("Fornecedor")){
+            
+        }
+        else{
             System.err.println("pessoa inválido: " + pessoa);      
         }
 
@@ -61,5 +67,41 @@ public class RegistroDAO {
         return false; 
     }
 }
+  
+    public boolean Registrofornecedor(Registro_fornecedor fornecedor) {
+        String sql = "INSERT INTO fornecedor (cnpj_fornecedor, email_fornecedor, endereço_fornecedor, nome_fornecedor)" + "VALUES(?, ?, ?, ?)";
+        
+        try (Connection conexao = Conexao_farmacia.getConnection();
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+        // Desliga o auto-commit para gerenciar a transação manualmente
+        conexao.setAutoCommit(false);
+
+
+        stmt.setString(1, fornecedor.getCnpj());     //cada numero como 1 é a ordem das ? lá em ciam 
+        stmt.setString(2, fornecedor.getEmail());
+        stmt.setString(3, fornecedor.getEndereco());
+        stmt.setString(4, fornecedor.getNome());
+        
+        
+        int linhasAfetadas = stmt.executeUpdate(); 
+        
+        if (linhasAfetadas > 0) {
+            conexao.commit(); 
+            return true;     
+        } else {
+            conexao.rollback(); 
+            return false;    
+        }
+        
     
+        
+        } catch (SQLException e) {
+            System.err.println("Erro ao salvar registro: " + e.getMessage());
+            e.printStackTrace(); 
+            return false; 
+        }
+    
+        
+    }
 }

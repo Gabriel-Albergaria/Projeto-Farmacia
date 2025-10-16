@@ -11,13 +11,17 @@ import DAO.BuscarDAO;
  * @author Gabriel
  */
 public class vLogin extends javax.swing.JDialog {
-
+    private vPrincipal  tela_antiga; 
+    
     /**
      * Creates new form vLogin
      */
-    public vLogin(java.awt.Frame parent, boolean modal) {
+    public vLogin(java.awt.Frame parent, boolean modal, vPrincipal principal) {
         super(parent, modal);
         initComponents();
+        this.tela_antiga = (vPrincipal) parent;
+        setLocationRelativeTo(parent);
+        
     }
 
     /**
@@ -145,7 +149,9 @@ public class vLogin extends javax.swing.JDialog {
         
         if(teste_login){
             javax.swing.JOptionPane.showMessageDialog(this,"login realizado");
+            new vAreaTrabalho().setVisible(true);
             this.dispose();
+            
     
         } else {
             javax.swing.JOptionPane.showMessageDialog(this,"login não realizado");
