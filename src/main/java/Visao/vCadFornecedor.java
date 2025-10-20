@@ -34,11 +34,11 @@ public class vCadFornecedor extends javax.swing.JDialog {
         lblnome_fornecedor = new javax.swing.JLabel();
         txtnome_fornecedor = new javax.swing.JTextField();
         lblcnpj = new javax.swing.JLabel();
-        txtcnpj = new javax.swing.JTextField();
         lblemail_fornecedor = new javax.swing.JLabel();
         txtemail = new javax.swing.JTextField();
         lvlendereco = new javax.swing.JLabel();
         txtendereco = new javax.swing.JTextField();
+        ffCnpj = new javax.swing.JFormattedTextField();
         painel_bot = new javax.swing.JPanel();
         butCadastrar_fornecedor = new javax.swing.JButton();
 
@@ -53,6 +53,19 @@ public class vCadFornecedor extends javax.swing.JDialog {
         lblemail_fornecedor.setText("Email:");
 
         lvlendereco.setText("Endereço:");
+
+        txtendereco.setToolTipText("");
+
+        try {
+            ffCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        ffCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ffCnpjActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painel_infoLayout = new javax.swing.GroupLayout(painel_info);
         painel_info.setLayout(painel_infoLayout);
@@ -73,9 +86,9 @@ public class vCadFornecedor extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtnome_fornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(txtcnpj)
                     .addComponent(txtemail)
-                    .addComponent(txtendereco))
+                    .addComponent(txtendereco)
+                    .addComponent(ffCnpj))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painel_infoLayout.setVerticalGroup(
@@ -88,8 +101,8 @@ public class vCadFornecedor extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblcnpj)
-                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(ffCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblemail_fornecedor))
@@ -121,7 +134,7 @@ public class vCadFornecedor extends javax.swing.JDialog {
             .addGroup(painel_botLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(butCadastrar_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -147,12 +160,21 @@ public class vCadFornecedor extends javax.swing.JDialog {
         
         fornecedor.setNome(txtnome_fornecedor.getText());
         fornecedor.setEmail(txtemail.getText());
-        fornecedor.setCnpj(txtcnpj.getText());
+        fornecedor.setCnpj(ffCnpj.getText());
         fornecedor.setEndereco(txtendereco.getText());
         
         RegistroDAO registroDAO = new RegistroDAO();
         boolean salvou = registroDAO.Registrofornecedor(fornecedor);
+        
+        if(salvou){
+            javax.swing.JOptionPane.showMessageDialog(this,"cadastro realizado");
+            this.dispose();
+        }
     }//GEN-LAST:event_butCadastrar_fornecedorActionPerformed
+
+    private void ffCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ffCnpjActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ffCnpjActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,13 +220,13 @@ public class vCadFornecedor extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butCadastrar_fornecedor;
+    private javax.swing.JFormattedTextField ffCnpj;
     private javax.swing.JLabel lblcnpj;
     private javax.swing.JLabel lblemail_fornecedor;
     private javax.swing.JLabel lblnome_fornecedor;
     private javax.swing.JLabel lvlendereco;
     private javax.swing.JPanel painel_bot;
     private javax.swing.JPanel painel_info;
-    private javax.swing.JTextField txtcnpj;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtendereco;
     private javax.swing.JTextField txtnome_fornecedor;

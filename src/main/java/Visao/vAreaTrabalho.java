@@ -31,10 +31,16 @@ public class vAreaTrabalho extends javax.swing.JFrame {
         Cadastro_fornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Area de Trabalho");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         Cadastro_fornecedor.setText("Cadatro Fornecedor");
+        Cadastro_fornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cadastro_fornecedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,6 +72,10 @@ public class vAreaTrabalho extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Cadastro_fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastro_fornecedorActionPerformed
+        new vCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_Cadastro_fornecedorActionPerformed
 
     /**
      * @param args the command line arguments

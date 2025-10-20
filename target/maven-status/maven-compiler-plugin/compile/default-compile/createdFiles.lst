@@ -1,5 +1,6 @@
 Visao\vCadastro$3.class
 Visao\vPrincipal$3.class
+Visao\vAreaTrabalho$2.class
 Visao\vLogin$1.class
 Modelo\Registro_fornecedor.class
 Visao\vLogin$2$1.class
@@ -17,10 +18,11 @@ Visao\vLogin.class
 Visao\vPrincipal.class
 Controle\Farmacia.class
 Visao\vCadastro$2.class
+Visao\vCadFornecedor$3.class
 Visao\vCadastro.class
 Visao\vPrincipal$2.class
 Visao\vAreaTrabalho$1.class
+Visao\vCadFornecedor$3$1.class
 DAO\Conexao_farmacia.class
 Visao\vCadFornecedor$1.class
-Visao\vCadFornecedor$2$1.class
 Modelo\Registro_usuario.class

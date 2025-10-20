@@ -23,8 +23,6 @@ public class RegistroDAO {
             sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
         }else if (pessoa.equals("Cliente")){
             sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, email_cliente, senha_cliente, data_nascimento, endereço_cliente)" + "VALUES(?, ?, ?, ?, ?, ?)";
-        }else if(pessoa.equals("Fornecedor")){
-            
         }
         else{
             System.err.println("pessoa inválido: " + pessoa);      
@@ -78,6 +76,7 @@ public class RegistroDAO {
         conexao.setAutoCommit(false);
 
 
+        
         stmt.setString(1, fornecedor.getCnpj());     //cada numero como 1 é a ordem das ? lá em ciam 
         stmt.setString(2, fornecedor.getEmail());
         stmt.setString(3, fornecedor.getEndereco());
