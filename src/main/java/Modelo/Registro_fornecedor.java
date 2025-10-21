@@ -13,6 +13,7 @@ public class Registro_fornecedor {
     private String email;
     private String endereco;
     private String nome;
+    private String telefone; 
 
     public Registro_fornecedor() {
     }
@@ -47,6 +48,14 @@ public class Registro_fornecedor {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
     
     

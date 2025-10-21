@@ -50,7 +50,6 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lvlendereco" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
@@ -64,6 +63,10 @@
                               <Component id="lblemail_fornecedor" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="lbltelefone" min="-2" max="-2" attributes="0"/>
+                          <Component id="lvlendereco" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -71,6 +74,7 @@
                       <Component id="txtemail" max="32767" attributes="0"/>
                       <Component id="txtendereco" max="32767" attributes="0"/>
                       <Component id="ffCnpj" max="32767" attributes="0"/>
+                      <Component id="txttelefone" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -99,7 +103,12 @@
                       <Component id="lvlendereco" min="-2" max="-2" attributes="0"/>
                       <Component id="txtendereco" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="234" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbltelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txttelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="206" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,6 +153,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ffCnpjActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JLabel" name="lbltelefone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Telefone:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txttelefone">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="painel_bot">
@@ -163,7 +179,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="butCadastrar_fornecedor" min="-2" pref="73" max="-2" attributes="0"/>
-                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

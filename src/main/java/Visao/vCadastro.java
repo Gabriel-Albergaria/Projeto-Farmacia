@@ -54,6 +54,8 @@ public class vCadastro extends javax.swing.JDialog {
         butConta_criada = new javax.swing.JButton();
         lb_criacao = new javax.swing.JLabel();
         selecionar_pessoa = new javax.swing.JComboBox<>();
+        lbltelefone = new javax.swing.JLabel();
+        txttelefone = new javax.swing.JTextField();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -124,6 +126,8 @@ public class vCadastro extends javax.swing.JDialog {
 
         selecionar_pessoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Funcionário", "Cliente" }));
 
+        lbltelefone.setText("jLabel1");
+
         javax.swing.GroupLayout conteudoLayout = new javax.swing.GroupLayout(conteudo);
         conteudo.setLayout(conteudoLayout);
         conteudoLayout.setHorizontalGroup(
@@ -138,20 +142,15 @@ public class vCadastro extends javax.swing.JDialog {
                         .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbnome)
                             .addComponent(lbConfirmacao_senha)
-                            .addComponent(lbEndereco)
                             .addComponent(lbSenha)
                             .addComponent(lbEmail)
                             .addComponent(lbNasc)
-                            .addComponent(lbcpf))
+                            .addComponent(lbcpf)
+                            .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbltelefone)
+                                .addComponent(lbEndereco)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(conteudoLayout.createSequentialGroup()
-                                    .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(Confirmacao_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(73, 73, 73))
-                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(conteudoLayout.createSequentialGroup()
                                 .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +159,18 @@ public class vCadastro extends javax.swing.JDialog {
                                         .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                                .addComponent(selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(conteudoLayout.createSequentialGroup()
+                                .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(conteudoLayout.createSequentialGroup()
+                                            .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(Confirmacao_senha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(73, 73, 73))
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(conteudoLayout.createSequentialGroup()
                         .addGap(172, 172, 172)
                         .addComponent(confirmacao)))
@@ -193,7 +203,11 @@ public class vCadastro extends javax.swing.JDialog {
                             .addGroup(conteudoLayout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(selecionar_pessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(94, 94, 94)
+                .addGap(18, 18, 18)
+                .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltelefone)
+                    .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
                 .addGroup(conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,6 +254,7 @@ public class vCadastro extends javax.swing.JDialog {
             usuario.setEndereco(txtEndereco.getText());
             usuario.setEmail(txtEmail.getText());
             usuario.setSenha(txtSenha.getText());
+            usuario.setTelefone(txttelefone.getText());
 
         try {
             String dataEmTexto = txtNasc.getText(); // convertendo o bgl de string para data para mandar pro sql
@@ -342,6 +357,7 @@ public class vCadastro extends javax.swing.JDialog {
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lb_criacao;
     private javax.swing.JLabel lbcpf;
+    private javax.swing.JLabel lbltelefone;
     private javax.swing.JLabel lbnome;
     private javax.swing.JComboBox<String> selecionar_pessoa;
     private javax.swing.JTextField txtCpf;
@@ -350,5 +366,6 @@ public class vCadastro extends javax.swing.JDialog {
     private javax.swing.JTextField txtNasc;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSenha;
+    private javax.swing.JTextField txttelefone;
     // End of variables declaration//GEN-END:variables
 }

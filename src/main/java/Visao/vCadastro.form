@@ -98,24 +98,17 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="lbnome" min="-2" max="-2" attributes="0"/>
                               <Component id="lbConfirmacao_senha" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbEndereco" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbSenha" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbEmail" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbNasc" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="lbcpf" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="lbltelefone" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbEndereco" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="Confirmacao_senha" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                          <Component id="txtSenha" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtEmail" min="-2" pref="189" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txtEndereco" alignment="0" min="-2" pref="276" max="-2" attributes="0"/>
@@ -127,6 +120,22 @@
                                   </Group>
                                   <EmptySpace pref="150" max="32767" attributes="0"/>
                                   <Component id="selecionar_pessoa" min="-2" pref="116" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="Confirmacao_senha" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                                  <Component id="txtSenha" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="txtEmail" min="-2" pref="189" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txttelefone" alignment="0" min="-2" pref="252" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -175,7 +184,12 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lbltelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txttelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lbEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -311,6 +325,13 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lbltelefone">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txttelefone">
         </Component>
       </SubComponents>
     </Container>

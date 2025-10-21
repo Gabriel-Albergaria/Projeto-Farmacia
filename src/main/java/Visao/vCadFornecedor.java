@@ -39,6 +39,8 @@ public class vCadFornecedor extends javax.swing.JDialog {
         lvlendereco = new javax.swing.JLabel();
         txtendereco = new javax.swing.JTextField();
         ffCnpj = new javax.swing.JFormattedTextField();
+        lbltelefone = new javax.swing.JLabel();
+        txttelefone = new javax.swing.JTextField();
         painel_bot = new javax.swing.JPanel();
         butCadastrar_fornecedor = new javax.swing.JButton();
 
@@ -67,13 +69,14 @@ public class vCadFornecedor extends javax.swing.JDialog {
             }
         });
 
+        lbltelefone.setText("Telefone:");
+
         javax.swing.GroupLayout painel_infoLayout = new javax.swing.GroupLayout(painel_info);
         painel_info.setLayout(painel_infoLayout);
         painel_infoLayout.setHorizontalGroup(
             painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_infoLayout.createSequentialGroup()
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lvlendereco)
                     .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(painel_infoLayout.createSequentialGroup()
                             .addGap(133, 133, 133)
@@ -82,13 +85,17 @@ public class vCadFornecedor extends javax.swing.JDialog {
                                 .addComponent(lblcnpj)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_infoLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(lblemail_fornecedor))))
+                            .addComponent(lblemail_fornecedor)))
+                    .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbltelefone)
+                        .addComponent(lvlendereco)))
                 .addGap(18, 18, 18)
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtnome_fornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(txtemail)
                     .addComponent(txtendereco)
-                    .addComponent(ffCnpj))
+                    .addComponent(ffCnpj)
+                    .addComponent(txttelefone))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painel_infoLayout.setVerticalGroup(
@@ -110,7 +117,11 @@ public class vCadFornecedor extends javax.swing.JDialog {
                 .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lvlendereco)
                     .addComponent(txtendereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(painel_infoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltelefone)
+                    .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         butCadastrar_fornecedor.setText("Cadastrar");
@@ -134,7 +145,7 @@ public class vCadFornecedor extends javax.swing.JDialog {
             .addGroup(painel_botLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(butCadastrar_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,7 +168,7 @@ public class vCadFornecedor extends javax.swing.JDialog {
 
     private void butCadastrar_fornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butCadastrar_fornecedorActionPerformed
         Registro_fornecedor fornecedor = new Registro_fornecedor();
-        
+        fornecedor.setTelefone(txttelefone.getText());
         fornecedor.setNome(txtnome_fornecedor.getText());
         fornecedor.setEmail(txtemail.getText());
         fornecedor.setCnpj(ffCnpj.getText());
@@ -169,6 +180,8 @@ public class vCadFornecedor extends javax.swing.JDialog {
         if(salvou){
             javax.swing.JOptionPane.showMessageDialog(this,"cadastro realizado");
             this.dispose();
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this,"Email ou cnpj ja cadastrado");
         }
     }//GEN-LAST:event_butCadastrar_fornecedorActionPerformed
 
@@ -224,11 +237,13 @@ public class vCadFornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel lblcnpj;
     private javax.swing.JLabel lblemail_fornecedor;
     private javax.swing.JLabel lblnome_fornecedor;
+    private javax.swing.JLabel lbltelefone;
     private javax.swing.JLabel lvlendereco;
     private javax.swing.JPanel painel_bot;
     private javax.swing.JPanel painel_info;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtendereco;
     private javax.swing.JTextField txtnome_fornecedor;
+    private javax.swing.JTextField txttelefone;
     // End of variables declaration//GEN-END:variables
 }

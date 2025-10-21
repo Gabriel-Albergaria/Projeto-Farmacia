@@ -13,8 +13,17 @@ public class Registro_usuario {
     private String email;
     private String senha;
     private String endereco;
+    private String telefone;
 
     public Registro_usuario() {
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
    

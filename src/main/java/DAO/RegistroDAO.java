@@ -20,9 +20,9 @@ public class RegistroDAO {
     public boolean salvar(Registro_usuario registro, String pessoa) {
         String sql ="";
         if(pessoa.equals("Funcionário")){
-            sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereço_func)" + "VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO funcionario (nome_func, cpf_func, email_func, senha_func, data_nascimento_func, endereco_func, telefone_func)" + "VALUES(?, ?, ?, ?, ?, ?, ?)";
         }else if (pessoa.equals("Cliente")){
-            sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, email_cliente, senha_cliente, data_nascimento, endereço_cliente)" + "VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO cliente (nome_cliente, cpf_cliente, email_cliente, senha_cliente, data_nascimento, endereco_cliente, telefone_cliente)" + "VALUES(?, ?, ?, ?, ?, ?, ?)";
         }
         else{
             System.err.println("pessoa inválido: " + pessoa);      
@@ -40,6 +40,7 @@ public class RegistroDAO {
         stmt.setString(2, registro.getCpf());
         stmt.setString(3, registro.getEmail());
         stmt.setString(4, registro.getSenha());
+        stmt.setString(7, registro.getTelefone());
 
         
         java.sql.Date dataSQL = new java.sql.Date(registro.getNascimento().getTime()); // data slq T-T
@@ -67,7 +68,7 @@ public class RegistroDAO {
 }
   
     public boolean Registrofornecedor(Registro_fornecedor fornecedor) {
-        String sql = "INSERT INTO fornecedor (cnpj_fornecedor, email_fornecedor, endereço_fornecedor, nome_fornecedor)" + "VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO fornecedor (cnpj_fornecedor, email_fornecedor, endereco_fornecedor, nome_fornecedor, telefone_fornecedor)" + "VALUES(?, ?, ?, ?, ?)";
         
         try (Connection conexao = Conexao_farmacia.getConnection();
          PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -81,6 +82,7 @@ public class RegistroDAO {
         stmt.setString(2, fornecedor.getEmail());
         stmt.setString(3, fornecedor.getEndereco());
         stmt.setString(4, fornecedor.getNome());
+        stmt.setString(5, fornecedor.getTelefone());
         
         
         int linhasAfetadas = stmt.executeUpdate(); 
