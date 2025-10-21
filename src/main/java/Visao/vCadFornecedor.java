@@ -45,6 +45,7 @@ public class vCadFornecedor extends javax.swing.JDialog {
         butCadastrar_fornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro Fornecedor");
 
         painel_info.setBackground(new java.awt.Color(255, 255, 255));
 

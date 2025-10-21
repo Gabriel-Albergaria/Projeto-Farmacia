@@ -1,12 +1,13 @@
 D:\Projetos java\Projeto-Farmacia\src\main\java\Controle\Farmacia.java
-D:\Projetos java\Projeto-Farmacia\src\main\java\Modelo\Registro_fornecedor.java
-D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vLogin.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\DAO\Conexao_farmacia.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\DAO\RegistroDAO.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\Modelo\Registro_usuario.java
+D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vCadFornecedor.java
+D:\Projetos java\Projeto-Farmacia\src\main\java\Modelo\Registro_fornecedor.java
+D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vLogin.java
+D:\Projetos java\Projeto-Farmacia\src\main\java\Modelo\Registro_produto.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\DAO\BuscarDAO.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vPrincipal.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vProdutos.java
-D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vCadFornecedor.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vAreaTrabalho.java
 D:\Projetos java\Projeto-Farmacia\src\main\java\Visao\vCadastro.java

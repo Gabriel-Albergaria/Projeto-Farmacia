@@ -1,4 +1,5 @@
 Visao\vCadastro$3.class
+Visao\vProdutos$3.class
 Visao\vPrincipal$3.class
 Visao\vProdutos$1.class
 Visao\vAreaTrabalho$2.class
@@ -27,7 +28,8 @@ Visao\vCadastro.class
 Visao\vPrincipal$2.class
 Visao\vAreaTrabalho$1.class
 Visao\vCadFornecedor$3$1.class
-Visao\vProdutos$2$1.class
 DAO\Conexao_farmacia.class
+Visao\vProdutos$3$1.class
 Visao\vCadFornecedor$1.class
+Modelo\Registro_produto.class
 Modelo\Registro_usuario.class

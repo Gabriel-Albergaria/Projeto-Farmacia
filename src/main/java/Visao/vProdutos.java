@@ -33,7 +33,7 @@ public class vProdutos extends javax.swing.JDialog {
         Cadastro_produtos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbTipo = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -43,14 +43,25 @@ public class vProdutos extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Produtos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         Cadastro_produtos.setText("Cadastro de Produtos");
+        Cadastro_produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cadastro_produtosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Pesquisa:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "EMAIL", "TELEFONE"}));
+        cbTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,8 +77,8 @@ public class vProdutos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +87,7 @@ public class vProdutos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
                 .addComponent(Cadastro_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -95,6 +106,14 @@ public class vProdutos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbTipoActionPerformed
+
+    private void Cadastro_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cadastro_produtosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cadastro_produtosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,7 +159,7 @@ public class vProdutos extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cadastro_produtos;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
