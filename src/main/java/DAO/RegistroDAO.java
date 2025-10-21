@@ -60,7 +60,6 @@ public class RegistroDAO {
         }
 
     } catch (SQLException e) {
-        
         System.err.println("Erro ao salvar registro: " + e.getMessage());
         e.printStackTrace(); 
         return false; 

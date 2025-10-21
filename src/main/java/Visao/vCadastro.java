@@ -279,7 +279,7 @@ public class vCadastro extends javax.swing.JDialog {
  
         } else {
             lb_criacao.setText("Falha ao criar usuário.");
-            javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro. Verifique os dados.", "Erro no Banco de Dados", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Não foi possível realizar o cadastro. Cpf, telefone ou Email já cadastrados", "Erro no Banco de Dados", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
 
     } else {

@@ -148,10 +148,16 @@ public class vLogin extends javax.swing.JDialog {
 
         
         if(teste_login){
-            javax.swing.JOptionPane.showMessageDialog(this,"login realizado");
-            new vAreaTrabalho().setVisible(true);
-            this.tela_antiga.dispose();
-            this.dispose();
+            if(pessoa.equals("Funcionário")){
+                javax.swing.JOptionPane.showMessageDialog(this,"login realizado");
+                new vAreaTrabalho().setVisible(true);
+                this.tela_antiga.dispose();
+                this.dispose();
+            }else{
+               this.tela_antiga.dispose();
+               this.dispose(); 
+            }
+            
             
     
         } else {
