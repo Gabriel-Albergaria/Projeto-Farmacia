@@ -30,7 +30,8 @@ public class vAreaTrabalho extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         Cadastro_fornecedor = new javax.swing.JButton();
-        Produtos = new javax.swing.JButton();
+        Busca = new javax.swing.JButton();
+        cadastro_produto = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -39,17 +40,24 @@ public class vAreaTrabalho extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        Cadastro_fornecedor.setText("Cadatro Fornecedor");
+        Cadastro_fornecedor.setText("Cadastro Fornecedor");
         Cadastro_fornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Cadastro_fornecedorActionPerformed(evt);
             }
         });
 
-        Produtos.setText("Produtos");
-        Produtos.addActionListener(new java.awt.event.ActionListener() {
+        Busca.setText("Busca");
+        Busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProdutosActionPerformed(evt);
+                BuscaActionPerformed(evt);
+            }
+        });
+
+        cadastro_produto.setText("Cadastro Produto");
+        cadastro_produto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastro_produtoActionPerformed(evt);
             }
         });
 
@@ -59,9 +67,11 @@ public class vAreaTrabalho extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(Cadastro_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cadastro_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cadastro_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
-                .addComponent(Produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Busca, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(156, 156, 156))
         );
         jPanel1Layout.setVerticalGroup(
@@ -70,8 +80,10 @@ public class vAreaTrabalho extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cadastro_fornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(427, Short.MAX_VALUE))
+                    .addComponent(Busca, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
+                .addComponent(cadastro_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -92,9 +104,13 @@ public class vAreaTrabalho extends javax.swing.JFrame {
         new vCadFornecedor(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_Cadastro_fornecedorActionPerformed
 
-    private void ProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProdutosActionPerformed
-        new vProdutos(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_ProdutosActionPerformed
+    private void BuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscaActionPerformed
+        new vBusca(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_BuscaActionPerformed
+
+    private void cadastro_produtoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastro_produtoActionPerformed
+        new vCadastroProdutos(this, rootPaneCheckingEnabled).setVisible(true); 
+    }//GEN-LAST:event_cadastro_produtoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,8 +148,9 @@ public class vAreaTrabalho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Busca;
     private javax.swing.JButton Cadastro_fornecedor;
-    private javax.swing.JButton Produtos;
+    private javax.swing.JButton cadastro_produto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables

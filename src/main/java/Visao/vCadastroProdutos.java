@@ -4,6 +4,9 @@
  */
 package Visao;
 
+import DAO.RegistroDAO;
+import Modelo.Registro_produto;
+
 /**
  *
  * @author Gabriel
@@ -27,15 +30,18 @@ public class vCadastroProdutos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPasswordField1 = new javax.swing.JPasswordField();
         lbl_nome_produto = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_nome_produto = new javax.swing.JTextField();
         lbl_preco_produto = new javax.swing.JLabel();
-        txt_preco_produto = new javax.swing.JTextField();
         lbl_quantidade_produto = new javax.swing.JLabel();
-        txt_quantidade_produto = new javax.swing.JTextField();
+        txt_preco_produto = new javax.swing.JFormattedTextField();
+        txt_quantidade_produto = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         but_cadastrar = new javax.swing.JButton();
+
+        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Produtos");
@@ -47,6 +53,10 @@ public class vCadastroProdutos extends javax.swing.JDialog {
         lbl_preco_produto.setText("Preço: ");
 
         lbl_quantidade_produto.setText("Quantidade:");
+
+        txt_preco_produto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+
+        txt_quantidade_produto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         javax.swing.GroupLayout lbl_nome_produtoLayout = new javax.swing.GroupLayout(lbl_nome_produto);
         lbl_nome_produto.setLayout(lbl_nome_produtoLayout);
@@ -60,8 +70,8 @@ public class vCadastroProdutos extends javax.swing.JDialog {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(lbl_nome_produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txt_nome_produto)
-                    .addComponent(txt_preco_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                    .addComponent(txt_nome_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                    .addComponent(txt_preco_produto)
                     .addComponent(txt_quantidade_produto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -80,10 +90,15 @@ public class vCadastroProdutos extends javax.swing.JDialog {
                 .addGroup(lbl_nome_produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_quantidade_produto)
                     .addComponent(txt_quantidade_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         but_cadastrar.setText("Cadastrar");
+        but_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_cadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,6 +135,39 @@ public class vCadastroProdutos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void but_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_cadastrarActionPerformed
+        
+        try {
+        Object preco_objeto = txt_preco_produto.getValue();
+        Object quantidade_objeto = txt_quantidade_produto.getValue();
+
+        double preco_pro = ((Number) preco_objeto).doubleValue();
+        int quantidade_pro = ((Number) quantidade_objeto).intValue();
+
+        Registro_produto produto = new Registro_produto();
+        produto.setNome_produto(txt_nome_produto.getText());
+        produto.setPreco_produto(preco_pro); 
+        produto.setQuantidade_produto(quantidade_pro); 
+
+        RegistroDAO registroDAO = new RegistroDAO();
+        boolean salvou = registroDAO.RegistroProduto(produto);
+
+        if (salvou) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Produto cadastrado com sucesso!");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar o produto.");
+        }
+
+    } catch (NullPointerException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Preço ou quantidade não podem estar vazios.", "Erro de Entrada", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (ClassCastException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Valores de preço ou quantidade inválidos.", "Erro de Formato", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Ocorreu um erro: " + e.getMessage(), "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
+      
+    }//GEN-LAST:event_but_cadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,11 +215,12 @@ public class vCadastroProdutos extends javax.swing.JDialog {
     private javax.swing.JButton but_cadastrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPanel lbl_nome_produto;
     private javax.swing.JLabel lbl_preco_produto;
     private javax.swing.JLabel lbl_quantidade_produto;
     private javax.swing.JTextField txt_nome_produto;
-    private javax.swing.JTextField txt_preco_produto;
-    private javax.swing.JTextField txt_quantidade_produto;
+    private javax.swing.JFormattedTextField txt_preco_produto;
+    private javax.swing.JFormattedTextField txt_quantidade_produto;
     // End of variables declaration//GEN-END:variables
 }

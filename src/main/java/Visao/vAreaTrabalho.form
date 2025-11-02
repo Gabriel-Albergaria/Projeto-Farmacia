@@ -53,9 +53,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="Cadastro_fornecedor" min="-2" pref="236" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="cadastro_produto" min="-2" pref="236" max="-2" attributes="0"/>
+                      <Component id="Cadastro_fornecedor" min="-2" pref="236" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="203" max="32767" attributes="0"/>
-                  <Component id="Produtos" min="-2" pref="236" max="-2" attributes="0"/>
+                  <Component id="Busca" min="-2" pref="236" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -66,9 +69,11 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Cadastro_fornecedor" alignment="3" min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="Produtos" alignment="3" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="Busca" alignment="3" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="427" max="32767" attributes="0"/>
+                  <EmptySpace pref="220" max="32767" attributes="0"/>
+                  <Component id="cadastro_produto" min="-2" pref="97" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -76,18 +81,26 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="Cadastro_fornecedor">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadatro Fornecedor"/>
+            <Property name="text" type="java.lang.String" value="Cadastro Fornecedor"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cadastro_fornecedorActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="Produtos">
+        <Component class="javax.swing.JButton" name="Busca">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Produtos"/>
+            <Property name="text" type="java.lang.String" value="Busca"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProdutosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="cadastro_produto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cadastro Produto"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastro_produtoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

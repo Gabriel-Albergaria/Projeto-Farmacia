@@ -9,6 +9,7 @@ package DAO;
  * @author Gabriel
  */
 import Modelo.Registro_fornecedor;
+import Modelo.Registro_produto;
 import Modelo.Registro_usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -104,4 +105,44 @@ public class RegistroDAO {
     
         
     }
+    
+    public boolean RegistroProduto(Registro_produto produto){
+        String sql = "INSERT INTO produto (preco_produto, nome_produto, quantidade_produto)" + "VALUES(?, ?, ?)";
+        
+        try (Connection conexao = Conexao_farmacia.getConnection();
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+        // Desliga o auto-commit para gerenciar a transação manualmente
+        conexao.setAutoCommit(false);
+
+
+        
+        stmt.setDouble(1, produto.getPreco_produto());     //cada numero como 1 é a ordem das ? lá em ciam 
+        stmt.setString(2, produto.getNome_produto());
+        stmt.setInt(3, produto.getQuantidade_produto());
+      
+        
+        
+        int linhasAfetadas = stmt.executeUpdate(); 
+        
+        if (linhasAfetadas > 0) {
+            conexao.commit(); 
+            return true;     
+        } else {
+            conexao.rollback(); 
+            return false;    
+        }
+        
+    
+        
+        } catch (SQLException e) {
+            System.err.println("Erro ao salvar registro: " + e.getMessage());
+            e.printStackTrace(); 
+            return false; 
+        }
+    
+        
+    }
+    
+
 }
