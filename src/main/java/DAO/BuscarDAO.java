@@ -52,10 +52,56 @@ public class BuscarDAO {
          return false;   
         
     }
+    
+    public Registro_usuario Pesquisa(String pesquisa, String tipo_selecionado, String metodo_pesquisa){
+        String sql = "";
+        String pesquisa_selecionar = "";
         
+        if(tipo_selecionado.equals("Cliente") && metodo_pesquisa.equals("CPF")){
+            sql = "SELECT  * FROM cliente WHERE cpf_cliente = ?";
+            Registro_usuario cliente_encontrado = null;
+            
+            try (Connection conexao = Conexao_farmacia.getConnection();
+            PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setString(1, pesquisa);
+
+            ResultSet resultado = stmt.executeQuery();
+
+            // 5. Verifica se o banco encontrou alguma linha
+            if (resultado.next()) {
+                // ENCONTROU! Agora vamos "hidratar" (preencher) o objeto
+            
+                cliente_encontrado = new Registro_usuario();
+            
+                // 6. Pega os dados de cada coluna do ResultSet (rs)
+                //    e usa os "setters" do seu objeto para preenchê-lo.
+                //    (Os nomes dos seus setters podem ser um pouco diferentes!)
+            
+                // Use os nomes EXATOS das colunas do seu banco
+                cliente_encontrado.setNome(resultado.getString("nome_cliente"));
+                cliente_encontrado.setCpf(resultado.getString("cpf_cliente"));
+                cliente_encontrado.setEmail(resultado.getString("email_cliente"));
+                cliente_encontrado.setEndereco(resultado.getString("endereco_cliente"));
+                cliente_encontrado.setTelefone(resultado.getString("telefone_cliente"));
+                cliente_encontrado.setNascimento(resultado.getDate("data_nascimento"));
+                // (Adicione qualquer outro dado que você queira carregar)
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar cliente por CPF: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // 7. Retorna o objeto.
+        //    Se encontrou, o objeto estará preenchido.
+        //    Se não encontrou (ou deu erro), ele retornará 'null'.
+        return cliente_encontrado;
+
+        }
+        return null;
+    }
 }
-   
-                
 
 
 

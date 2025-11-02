@@ -4,18 +4,27 @@
  */
 package Visao;
 
+import DAO.BuscarDAO;
+import Modelo.Registro_usuario;
+import javax.swing.DefaultListModel;
+
+
+
 /**
  *
  * @author Gabriel
  */
 public class vBusca extends javax.swing.JDialog {
-
+    DefaultListModel<String> lista;
     /**
      * Creates new form vProdutos
      */
     public vBusca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        lista = new DefaultListModel<>();
+        Lista.setModel(lista);
     }
 
     /**
@@ -34,7 +43,9 @@ public class vBusca extends javax.swing.JDialog {
         txtPesquisa = new javax.swing.JTextField();
         cbTipo = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        Lista = new javax.swing.JList<>();
+        cb_pessoa_selecionar = new javax.swing.JComboBox<>();
+        but_buscar = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -50,19 +61,33 @@ public class vBusca extends javax.swing.JDialog {
 
         jLabel1.setText("Pesquisa:");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "EMAIL", "TELEFONE"}));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"CPF", "NOME"}));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
             }
         });
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        Lista.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(Lista);
+
+        cb_pessoa_selecionar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Funcionário", "Produto", "Fornecedor" }));
+        cb_pessoa_selecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_pessoa_selecionarActionPerformed(evt);
+            }
+        });
+
+        but_buscar.setText("Buscar");
+        but_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_buscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,15 +97,18 @@ public class vBusca extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)))
+                .addGap(29, 29, 29)
+                .addComponent(but_buscar)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,10 +117,17 @@ public class vBusca extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(83, 83, 83)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                    .addComponent(but_buscar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -110,8 +145,62 @@ public class vBusca extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
-        // TODO add your handling code here:
+       
+        
     }//GEN-LAST:event_cbTipoActionPerformed
+
+    private void cb_pessoa_selecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_pessoa_selecionarActionPerformed
+        String pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
+        
+        if(pessoa.equals("Cliente")){
+            cbTipo.removeAllItems();
+            cbTipo.addItem("CPF");
+            cbTipo.addItem("NOME");
+        }else if(pessoa.equals("Funcionário")){
+            cbTipo.removeAllItems();
+            cbTipo.addItem("CPF");
+            cbTipo.addItem("NOME");
+        }else if(pessoa.equals("Fornecedor")){
+            cbTipo.removeAllItems();
+            cbTipo.addItem("CNPJ");
+            cbTipo.addItem("NOME");
+            cbTipo.addItem("EMAIL");
+        }else if(pessoa.equals("Produto")){
+            cbTipo.removeAllItems();
+            cbTipo.addItem("NOME");
+        }
+    }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
+
+    private void but_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_buscarActionPerformed
+            
+           // 1. Pega os parâmetros da sua tela
+    String valorPesquisa = txtPesquisa.getText();
+    String criterioPesquisa = cbTipo.getSelectedItem().toString();
+    String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
+
+    // 2. Cria o DAO (o "motor")
+    BuscarDAO buscar = new BuscarDAO();
+    
+    // 3. CHAMA O MÉTODO de busca e GUARDA O RESULTADO
+    //    (Estou supondo que o método se chama 'buscarFuncionarioPorCriterio'
+    //     e retorna um objeto 'Registro_usuario', como na nossa conversa anterior)
+    Registro_usuario resultado = buscar.Pesquisa(valorPesquisa, tipo_pessoa, criterioPesquisa);
+
+    // 4. Limpa a lista antes de adicionar novos resultados
+    //    (Assumindo que 'lista' é o seu DefaultListModel)
+    lista.clear(); 
+
+    // 5. Adiciona o RESULTADO (não o 'buscar') na lista
+    if (resultado != null) {
+        // Adiciona o nome do usuário encontrado na lista
+        lista.addElement(resultado.getNome()); 
+        // Você pode adicionar mais dados se quiser
+        lista.addElement("CPF: " + resultado.getCpf());
+    } else {
+        lista.addElement("Nenhum resultado encontrado.");
+    }
+            
+    }//GEN-LAST:event_but_buscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,10 +246,12 @@ public class vBusca extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> Lista;
+    private javax.swing.JButton but_buscar;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JComboBox<String> cb_pessoa_selecionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
