@@ -5,6 +5,8 @@
 package Visao;
 
 import DAO.BuscarDAO;
+import Modelo.Registro_fornecedor;
+import Modelo.Registro_produto;
 import Modelo.Registro_usuario;
 import javax.swing.DefaultListModel;
 
@@ -172,34 +174,59 @@ public class vBusca extends javax.swing.JDialog {
     }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
 
     private void but_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_buscarActionPerformed
-            
-           // 1. Pega os parâmetros da sua tela
-    String valorPesquisa = txtPesquisa.getText();
-    String criterioPesquisa = cbTipo.getSelectedItem().toString();
-    String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
-
-    // 2. Cria o DAO (o "motor")
-    BuscarDAO buscar = new BuscarDAO();
+         
     
-    // 3. CHAMA O MÉTODO de busca e GUARDA O RESULTADO
-    //    (Estou supondo que o método se chama 'buscarFuncionarioPorCriterio'
-    //     e retorna um objeto 'Registro_usuario', como na nossa conversa anterior)
-    Registro_usuario resultado = buscar.Pesquisa(valorPesquisa, tipo_pessoa, criterioPesquisa);
+    String pesquisa = txtPesquisa.getText().trim();
+    String metodo_pesquisa = cbTipo.getSelectedItem().toString(); 
+    String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString(); 
 
-    // 4. Limpa a lista antes de adicionar novos resultados
-    //    (Assumindo que 'lista' é o seu DefaultListModel)
+    if (pesquisa.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
+        return; 
+    }
+
+    BuscarDAO buscar = new BuscarDAO();
     lista.clear(); 
 
-    // 5. Adiciona o RESULTADO (não o 'buscar') na lista
-    if (resultado != null) {
-        // Adiciona o nome do usuário encontrado na lista
-        lista.addElement(resultado.getNome()); 
-        // Você pode adicionar mais dados se quiser
-        lista.addElement("CPF: " + resultado.getCpf());
+    if (tipo_pessoa.equals("Cliente") || tipo_pessoa.equals("Funcionário")) {
+        Registro_usuario resultado_usuario = buscar.Pesquisa_usuario(pesquisa, tipo_pessoa, metodo_pesquisa);
+        
+        if (resultado_usuario != null) {
+            lista.addElement(resultado_usuario.getNome());
+            lista.addElement("CPF: " + resultado_usuario.getCpf());
+            lista.addElement("Email: " + resultado_usuario.getEmail());
+            lista.addElement("Telefone: " + resultado_usuario.getTelefone());
+        } else {
+            lista.addElement("Nenhum resultado encontrado.");
+        }
+
+    } else if (tipo_pessoa.equals("Produto")) {
+        Registro_produto resultado_produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa); 
+        
+        if (resultado_produto != null) {
+            lista.addElement(resultado_produto.getNome_produto());
+            lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
+            lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());
+        } else {
+            lista.addElement("Nenhum resultado encontrado.");
+        }
+
+    } else if (tipo_pessoa.equals("Fornecedor")) {
+        Registro_fornecedor resultado_fornecedor = buscar.Pesquisa_fornecedor(pesquisa, metodo_pesquisa);
+        
+        if (resultado_fornecedor != null) {
+            lista.addElement(resultado_fornecedor.getNome());
+            lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
+            lista.addElement("Email: " + resultado_fornecedor.getEmail());
+            lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
+        } else {
+            lista.addElement("Nenhum resultado encontrado.");
+        }
+        
     } else {
-        lista.addElement("Nenhum resultado encontrado.");
-    }
-            
+        lista.addElement("Tipo de pesquisa não selecionado.");
+    }    
+   
     }//GEN-LAST:event_but_buscarActionPerformed
 
     /**
