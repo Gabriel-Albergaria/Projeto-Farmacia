@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import Modelo.Registro_usuario;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class BuscarDAO {
     
@@ -44,7 +45,7 @@ public class BuscarDAO {
         return false; 
     }
     
-    public Registro_usuario Pesquisa_usuario(String pesquisa, String tipo_selecionado, String metodo_pesquisa){
+    public ArrayList<Registro_usuario> Pesquisa_usuario(String pesquisa, String tipo_selecionado, String metodo_pesquisa){
         String sql = "";
         Registro_usuario usuario_encontrado = null;
         String tabela = "";
@@ -86,16 +87,16 @@ public class BuscarDAO {
 
         // Monta a query final de forma dinâmica
         // Ex: "SELECT * FROM cliente WHERE cpf_cliente = ?"
-        sql = String.format("SELECT * FROM %s WHERE %s = ?", tabela, coluna_busca);
+        sql = "SELECT * FROM " + tabela + " WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        ArrayList<Registro_usuario> users = new ArrayList<>();
 
-   
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, pesquisa);
+            //stmt.setString(1, pesquisa);
             ResultSet resultado = stmt.executeQuery();
 
-            if (resultado.next()) {
+            while (resultado.next()) {
                 usuario_encontrado = new Registro_usuario();
 
                 usuario_encontrado.setNome(resultado.getString(col_nome));
@@ -104,6 +105,7 @@ public class BuscarDAO {
                 usuario_encontrado.setEndereco(resultado.getString(col_end));
                 usuario_encontrado.setTelefone(resultado.getString(col_tel));
                 usuario_encontrado.setNascimento(resultado.getDate(col_data));
+                users.add(usuario_encontrado);
             }
 
         } catch (SQLException e) {
@@ -111,7 +113,7 @@ public class BuscarDAO {
             e.printStackTrace();
         }
 
-        return usuario_encontrado;
+        return users;
 }
 
 

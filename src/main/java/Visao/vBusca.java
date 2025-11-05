@@ -8,6 +8,7 @@ import DAO.BuscarDAO;
 import Modelo.Registro_fornecedor;
 import Modelo.Registro_produto;
 import Modelo.Registro_usuario;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 
 
@@ -72,11 +73,7 @@ public class vBusca extends javax.swing.JDialog {
             }
         });
 
-        Lista.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        Lista.setVisibleRowCount(100000000);
         Lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ListaMouseClicked(evt);
@@ -141,14 +138,15 @@ public class vBusca extends javax.swing.JDialog {
                     .addComponent(but_buscar))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                        .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
                 .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
@@ -191,24 +189,27 @@ public class vBusca extends javax.swing.JDialog {
     }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
 
     private void but_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_buscarActionPerformed
+       lista.clear();
        String pesquisa = txtPesquisa.getText().trim();
        String metodo_pesquisa = cbTipo.getSelectedItem().toString();
        String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
 
-       if (pesquisa.isEmpty()) {
-           javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
-           return;
-       }
+       //if (pesquisa.isEmpty()) {
+       //    javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
+       //    return;
+       //}
 
        BuscarDAO buscar = new BuscarDAO();
-       lista.clear();
+       
 
        this.objeto_encontrado_na_busca = null; 
-
+       
        if (tipo_pessoa.equals("Cliente") || tipo_pessoa.equals("Funcionário")) {
-           Registro_usuario resultado_usuario = buscar.Pesquisa_usuario(pesquisa, tipo_pessoa, metodo_pesquisa);
-
-           this.objeto_encontrado_na_busca = resultado_usuario; 
+           ArrayList<Registro_usuario> users = buscar.Pesquisa_usuario(pesquisa, tipo_pessoa, metodo_pesquisa);
+           Registro_usuario resultado_usuario = new Registro_usuario();
+           for (int i = 0; i < users.size(); i++) {
+               resultado_usuario = users.get(i);
+               this.objeto_encontrado_na_busca = resultado_usuario; 
 
            if (resultado_usuario != null) {
                lista.addElement(resultado_usuario.getNome());
@@ -218,9 +219,13 @@ public class vBusca extends javax.swing.JDialog {
                lista.addElement("Email: " + resultado_usuario.getEmail());
                lista.addElement("Endereço: " + resultado_usuario.getEndereco());
                lista.addElement("Nascimento: " + resultado_usuario.getNascimento());
+               lista.addElement("");
            } else {
                lista.addElement("Nenhum resultado encontrado.");
            }
+               
+           }
+           
 
        } else if (tipo_pessoa.equals("Produto")) {
            Registro_produto resultado_produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa);

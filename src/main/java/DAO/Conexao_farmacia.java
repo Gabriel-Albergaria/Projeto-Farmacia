@@ -18,7 +18,7 @@ public class Conexao_farmacia {
         try{
             String url = "jdbc:mysql://127.0.0.1:3306/farmacia";
             String usuario = "root";
-            String senha = "9137suGAy37vz@!823y8!sg2@";
+            String senha = "1234";
             Conexao = DriverManager.getConnection(url,usuario,senha) ; 
         } catch (SQLException e){
             System.out.println("Erros" + e.getMessage());

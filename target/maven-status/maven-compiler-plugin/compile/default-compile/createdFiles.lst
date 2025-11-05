@@ -18,6 +18,7 @@ DAO\BuscarDAO.class
 Visao\vBusca$7.class
 DAO\RegistroDAO.class
 Visao\vEditarBuscaClienteFuncionario$1.class
+Visao\vBusca$7$1.class
 Visao\vLogin$2.class
 Visao\vAreaTrabalho.class
 Visao\vCadastro$4.class
@@ -25,7 +26,6 @@ Visao\vAreaTrabalho$3.class
 Visao\vLogin.class
 Visao\vPrincipal.class
 Visao\vEditarBuscaClienteFuncionario$2.class
-Visao\vBusca$8$1.class
 Controle\Farmacia.class
 Visao\vCadastro$2.class
 Visao\vCadFornecedor$3.class
@@ -42,7 +42,6 @@ Visao\vBusca.class
 Visao\vCadastroProdutos.class
 Visao\vCadFornecedor$1.class
 Modelo\Registro_produto.class
-Visao\vBusca$8.class
 Visao\vEditarBuscaClienteFuncionario.class
 Modelo\Registro_usuario.class
 Visao\vBusca$3.class
