@@ -18,6 +18,7 @@ import javax.swing.DefaultListModel;
  */
 public class vBusca extends javax.swing.JDialog {
     DefaultListModel<String> lista;
+    private Object objeto_encontrado_na_busca;
     /**
      * Creates new form vProdutos
      */
@@ -48,6 +49,7 @@ public class vBusca extends javax.swing.JDialog {
         Lista = new javax.swing.JList<>();
         cb_pessoa_selecionar = new javax.swing.JComboBox<>();
         but_buscar = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -63,7 +65,7 @@ public class vBusca extends javax.swing.JDialog {
 
         jLabel1.setText("Pesquisa:");
 
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"CPF", "NOME"}));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {"CPF"}));
         cbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTipoActionPerformed(evt);
@@ -74,6 +76,11 @@ public class vBusca extends javax.swing.JDialog {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        Lista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListaMouseClicked(evt);
+            }
         });
         jScrollPane2.setViewportView(Lista);
 
@@ -91,25 +98,37 @@ public class vBusca extends javax.swing.JDialog {
             }
         });
 
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)))
-                .addGap(29, 29, 29)
-                .addComponent(but_buscar)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(9, 9, 9)))
+                        .addGap(29, 29, 29)
+                        .addComponent(but_buscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,7 +148,9 @@ public class vBusca extends javax.swing.JDialog {
                         .addComponent(cb_pessoa_selecionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,16 +178,12 @@ public class vBusca extends javax.swing.JDialog {
         if(pessoa.equals("Cliente")){
             cbTipo.removeAllItems();
             cbTipo.addItem("CPF");
-            cbTipo.addItem("NOME");
         }else if(pessoa.equals("Funcionário")){
             cbTipo.removeAllItems();
             cbTipo.addItem("CPF");
-            cbTipo.addItem("NOME");
         }else if(pessoa.equals("Fornecedor")){
             cbTipo.removeAllItems();
             cbTipo.addItem("CNPJ");
-            cbTipo.addItem("NOME");
-            cbTipo.addItem("EMAIL");
         }else if(pessoa.equals("Produto")){
             cbTipo.removeAllItems();
             cbTipo.addItem("NOME");
@@ -174,60 +191,99 @@ public class vBusca extends javax.swing.JDialog {
     }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
 
     private void but_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_buscarActionPerformed
-         
+       String pesquisa = txtPesquisa.getText().trim();
+       String metodo_pesquisa = cbTipo.getSelectedItem().toString();
+       String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
+
+       if (pesquisa.isEmpty()) {
+           javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
+           return;
+       }
+
+       BuscarDAO buscar = new BuscarDAO();
+       lista.clear();
+
+       this.objeto_encontrado_na_busca = null; 
+
+       if (tipo_pessoa.equals("Cliente") || tipo_pessoa.equals("Funcionário")) {
+           Registro_usuario resultado_usuario = buscar.Pesquisa_usuario(pesquisa, tipo_pessoa, metodo_pesquisa);
+
+           this.objeto_encontrado_na_busca = resultado_usuario; 
+
+           if (resultado_usuario != null) {
+               lista.addElement(resultado_usuario.getNome());
+               lista.addElement("CPF: " + resultado_usuario.getCpf());
+               lista.addElement("Email: " + resultado_usuario.getEmail());
+               lista.addElement("Telefone: " + resultado_usuario.getTelefone());
+               lista.addElement("Email: " + resultado_usuario.getEmail());
+               lista.addElement("Endereço: " + resultado_usuario.getEndereco());
+               lista.addElement("Nascimento: " + resultado_usuario.getNascimento());
+           } else {
+               lista.addElement("Nenhum resultado encontrado.");
+           }
+
+       } else if (tipo_pessoa.equals("Produto")) {
+           Registro_produto resultado_produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa);
+
     
-    String pesquisa = txtPesquisa.getText().trim();
-    String metodo_pesquisa = cbTipo.getSelectedItem().toString(); 
-    String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString(); 
+           this.objeto_encontrado_na_busca = resultado_produto; 
 
-    if (pesquisa.isEmpty()) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
-        return; 
-    }
+           if (resultado_produto != null) {
+               lista.addElement(resultado_produto.getNome_produto());
+               lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
+               lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());
+           } else {
+               lista.addElement("Nenhum resultado encontrado.");
+           }
 
-    BuscarDAO buscar = new BuscarDAO();
-    lista.clear(); 
+       } else if (tipo_pessoa.equals("Fornecedor")) {
+           Registro_fornecedor resultado_fornecedor = buscar.Pesquisa_fornecedor(pesquisa, metodo_pesquisa);
 
-    if (tipo_pessoa.equals("Cliente") || tipo_pessoa.equals("Funcionário")) {
-        Registro_usuario resultado_usuario = buscar.Pesquisa_usuario(pesquisa, tipo_pessoa, metodo_pesquisa);
-        
-        if (resultado_usuario != null) {
-            lista.addElement(resultado_usuario.getNome());
-            lista.addElement("CPF: " + resultado_usuario.getCpf());
-            lista.addElement("Email: " + resultado_usuario.getEmail());
-            lista.addElement("Telefone: " + resultado_usuario.getTelefone());
-        } else {
-            lista.addElement("Nenhum resultado encontrado.");
-        }
+           this.objeto_encontrado_na_busca = resultado_fornecedor; 
 
-    } else if (tipo_pessoa.equals("Produto")) {
-        Registro_produto resultado_produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa); 
-        
-        if (resultado_produto != null) {
-            lista.addElement(resultado_produto.getNome_produto());
-            lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
-            lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());
-        } else {
-            lista.addElement("Nenhum resultado encontrado.");
-        }
+           if (resultado_fornecedor != null) {
+               lista.addElement(resultado_fornecedor.getNome()); 
+               lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
+               lista.addElement("Email: " + resultado_fornecedor.getEmail());
+               lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
+           } else {
+               lista.addElement("Nenhum resultado encontrado.");
+           }
 
-    } else if (tipo_pessoa.equals("Fornecedor")) {
-        Registro_fornecedor resultado_fornecedor = buscar.Pesquisa_fornecedor(pesquisa, metodo_pesquisa);
-        
-        if (resultado_fornecedor != null) {
-            lista.addElement(resultado_fornecedor.getNome());
-            lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
-            lista.addElement("Email: " + resultado_fornecedor.getEmail());
-            lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
-        } else {
-            lista.addElement("Nenhum resultado encontrado.");
-        }
-        
-    } else {
-        lista.addElement("Tipo de pesquisa não selecionado.");
-    }    
+       } else {
+           lista.addElement("Tipo de pesquisa não selecionado.");
+       }
+ 
+    
    
     }//GEN-LAST:event_but_buscarActionPerformed
+
+    private void ListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaMouseClicked
+       
+    }//GEN-LAST:event_ListaMouseClicked
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+     
+         if (this.objeto_encontrado_na_busca == null) {
+             javax.swing.JOptionPane.showMessageDialog(this, "Nenhum item válido foi encontrado na busca.");
+             return;
+         }
+
+         if (this.objeto_encontrado_na_busca instanceof Registro_usuario) {
+
+             Registro_usuario usuario_para_editar = (Registro_usuario) this.objeto_encontrado_na_busca;    
+             String tipo_pessoa_selecionado = cb_pessoa_selecionar.getSelectedItem().toString();
+
+             vEditarBuscaClienteFuncionario tela_edicao_usuario = new vEditarBuscaClienteFuncionario(this, true, usuario_para_editar, tipo_pessoa_selecionado);
+             tela_edicao_usuario.setVisible(true);
+             this.but_buscar.doClick(); 
+         } else if (this.objeto_encontrado_na_busca instanceof Registro_produto) {
+             // ... (código para editar produto) ...
+         } else if (this.objeto_encontrado_na_busca instanceof Registro_fornecedor) {
+             // ... (código para editar fornecedor) ...
+         }
+        
+    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,6 +329,7 @@ public class vBusca extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Editar;
     private javax.swing.JList<String> Lista;
     private javax.swing.JButton but_buscar;
     private javax.swing.JComboBox<String> cbTipo;

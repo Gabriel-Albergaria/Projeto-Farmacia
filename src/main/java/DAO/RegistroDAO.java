@@ -144,5 +144,46 @@ public class RegistroDAO {
         
     }
     
+    public boolean atualizar_usuario(Registro_usuario usuario_para_atualizar, String tipo_pessoa) {
+    
+    String sql = "";
 
+    if (tipo_pessoa.equals("Cliente")) {
+        sql = "UPDATE cliente SET nome_cliente = ?, email_cliente = ?, " + "endereco_cliente = ?, telefone_cliente = ?, data_nascimento = ? " + "WHERE cpf_cliente = ?";
+    } else if (tipo_pessoa.equals("Funcionário")) {
+        sql = "UPDATE funcionario SET nome_func = ?, email_func = ?, " + "endereco_func = ?, telefone_func = ?, data_nascimento_func = ? " + "WHERE cpf_func = ?";
+    } else {
+        System.err.println("Tipo de pessoa inválido para atualização.");
+        return false; 
+    }
+
+    try (Connection conexao = Conexao_farmacia.getConnection();
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+         
+        conexao.setAutoCommit(false);
+        
+        stmt.setString(1, usuario_para_atualizar.getNome());
+        stmt.setString(2, usuario_para_atualizar.getEmail());
+        stmt.setString(3, usuario_para_atualizar.getEndereco());
+        stmt.setString(4, usuario_para_atualizar.getTelefone());
+        stmt.setDate(5, new java.sql.Date(usuario_para_atualizar.getNascimento().getTime()));       
+        stmt.setString(6, usuario_para_atualizar.getCpf()); 
+
+        int linhas_afetadas = stmt.executeUpdate();
+  
+        if (linhas_afetadas > 0) {
+            conexao.commit(); 
+            return true;
+        } else {
+            conexao.rollback();
+            return false;
+        }
+    } catch (SQLException e) {
+        System.err.println("Erro ao atualizar registro: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+
+
+    }
 }
