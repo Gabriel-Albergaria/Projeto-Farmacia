@@ -85,8 +85,6 @@ public class BuscarDAO {
             return null;
         }
 
-        // Monta a query final de forma dinâmica
-        // Ex: "SELECT * FROM cliente WHERE cpf_cliente = ?"
         sql = "SELECT * FROM " + tabela + " WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
         ArrayList<Registro_usuario> users = new ArrayList<>();
 
@@ -117,34 +115,34 @@ public class BuscarDAO {
 }
 
 
-    public Registro_produto Pesquisa_produto(String pesquisa, String tipo_selecionado){
+    public ArrayList<Registro_produto> Pesquisa_produto(String pesquisa, String tipo_selecionado){
         String sql = "";
         Registro_produto produto_encontrado = null;
         String coluna_busca = "";
 
-        // 1. Define em qual coluna do banco de dados vamos pesquisar
-        if (tipo_selecionado.equals("NOME")) {
+          if (tipo_selecionado.equals("NOME")) {
             coluna_busca = "nome_produto";
         } else {
             System.err.println("Método de pesquisa ('" + tipo_selecionado + "') não suportado para Produto.");
-            return null; // Retorna nulo se o método não for 'NOME', 'ID', etc.
+            return null; 
         }
 
-        // 2. Monta a query dinamicamente
-        sql = String.format("SELECT * FROM produto WHERE %s = ?", coluna_busca);
-
-        // 3. Executa a busca no banco
+      
+        sql = "SELECT * FROM produto WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        ArrayList<Registro_produto> produto = new ArrayList<>();
+       
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, pesquisa);
+            //stmt.setString(1, pesquisa);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 produto_encontrado = new Registro_produto();
                 produto_encontrado.setNome_produto(rs.getString("nome_produto"));
                 produto_encontrado.setPreco_produto(rs.getDouble("preco_produto"));
                 produto_encontrado.setQuantidade_produto(rs.getInt("quantidade_produto"));
+                produto.add(produto_encontrado);
 
             }
         } catch (SQLException e) {
@@ -152,41 +150,36 @@ public class BuscarDAO {
              e.printStackTrace();
         }
 
-        // 5. Retorna o objeto (nulo ou preenchido)
-        return produto_encontrado;
+        return produto;
     }
 
-    public Registro_fornecedor Pesquisa_fornecedor(String pesquisa, String tipo_selecionado){
+    public ArrayList<Registro_fornecedor> Pesquisa_fornecedor(String pesquisa, String tipo_selecionado){
         String sql = "";
         Registro_fornecedor fornecedor_encontrado = null;
         String coluna_busca = "";
 
-        // 1. Define em qual coluna do banco de dados vamos pesquisar
-        if (tipo_selecionado.equals("NOME")) {
-            coluna_busca = "nome_fornecedor";
-        } else if(tipo_selecionado.equals("CNPJ")){
+        if(tipo_selecionado.equals("CNPJ")){
             coluna_busca = "cnpj_fornecedor";
-        }else if(tipo_selecionado.equals("EMAIL")){
-            coluna_busca = "email_fornecedor";
-        } else {
+        }else {
             System.err.println("Método de pesquisa ('" + tipo_selecionado + "') não suportado para Fornecedor.");
             return null;
         }
 
-        sql = String.format("SELECT * FROM fornecedor WHERE %s = ?", coluna_busca);
-
+        sql = "SELECT * FROM fornecedor WHERE " + coluna_busca + " like '%" + pesquisa + "%'";  
+        ArrayList<Registro_fornecedor> fornecedor = new ArrayList<>();
      
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, pesquisa);
+            //stmt.setString(1, pesquisa);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 fornecedor_encontrado = new Registro_fornecedor();
                 fornecedor_encontrado.setNome(rs.getString("nome_fornecedor"));
                 fornecedor_encontrado.setCnpj(rs.getString("cnpj_fornecedor"));
                 fornecedor_encontrado.setEmail(rs.getString("email_fornecedor"));
+                fornecedor.add(fornecedor_encontrado);
 
             }
         } catch (SQLException e) {
@@ -194,7 +187,7 @@ public class BuscarDAO {
              e.printStackTrace();
         }
 
-        return fornecedor_encontrado;
+        return fornecedor;
     }
 }
 

@@ -194,11 +194,6 @@ public class vBusca extends javax.swing.JDialog {
        String metodo_pesquisa = cbTipo.getSelectedItem().toString();
        String tipo_pessoa = cb_pessoa_selecionar.getSelectedItem().toString();
 
-       //if (pesquisa.isEmpty()) {
-       //    javax.swing.JOptionPane.showMessageDialog(this, "Por favor, digite um valor para a pesquisa.");
-       //    return;
-       //}
-
        BuscarDAO buscar = new BuscarDAO();
        
 
@@ -211,50 +206,64 @@ public class vBusca extends javax.swing.JDialog {
                resultado_usuario = users.get(i);
                this.objeto_encontrado_na_busca = resultado_usuario; 
 
-           if (resultado_usuario != null) {
-               lista.addElement(resultado_usuario.getNome());
-               lista.addElement("CPF: " + resultado_usuario.getCpf());
-               lista.addElement("Email: " + resultado_usuario.getEmail());
-               lista.addElement("Telefone: " + resultado_usuario.getTelefone());
-               lista.addElement("Email: " + resultado_usuario.getEmail());
-               lista.addElement("Endereço: " + resultado_usuario.getEndereco());
-               lista.addElement("Nascimento: " + resultado_usuario.getNascimento());
-               lista.addElement("");
-           } else {
-               lista.addElement("Nenhum resultado encontrado.");
-           }
+                if (resultado_usuario != null) {
+                    lista.addElement(resultado_usuario.getNome());
+                    lista.addElement("CPF: " + resultado_usuario.getCpf());
+                    lista.addElement("Email: " + resultado_usuario.getEmail());
+                    lista.addElement("Telefone: " + resultado_usuario.getTelefone());
+                    lista.addElement("Email: " + resultado_usuario.getEmail());
+                    lista.addElement("Endereço: " + resultado_usuario.getEndereco());
+                    lista.addElement("Nascimento: " + resultado_usuario.getNascimento());
+                    lista.addElement("");
+                } else {
+                    lista.addElement("Nenhum resultado encontrado.");
+                }
                
            }
            
 
        } else if (tipo_pessoa.equals("Produto")) {
-           Registro_produto resultado_produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa);
+           ArrayList<Registro_produto> produto = buscar.Pesquisa_produto(pesquisa, metodo_pesquisa) ;
+           Registro_produto resultado_produto = new Registro_produto();
+           
+           for (int i = 0; i < produto.size(); i++) {
+               resultado_produto = produto.get(i);
+               this.objeto_encontrado_na_busca = resultado_produto;
+           
+                if (resultado_produto != null) {
+                    lista.addElement(resultado_produto.getNome_produto());
+                    lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
+                    lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());
+                    lista.addElement("");
+                } else {
+                    lista.addElement("Nenhum resultado encontrado.");
+                }
 
+           
+           }
     
-           this.objeto_encontrado_na_busca = resultado_produto; 
-
-           if (resultado_produto != null) {
-               lista.addElement(resultado_produto.getNome_produto());
-               lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
-               lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());
-           } else {
-               lista.addElement("Nenhum resultado encontrado.");
-           }
-
+           
        } else if (tipo_pessoa.equals("Fornecedor")) {
-           Registro_fornecedor resultado_fornecedor = buscar.Pesquisa_fornecedor(pesquisa, metodo_pesquisa);
+           ArrayList<Registro_fornecedor> fornecedor = buscar.Pesquisa_fornecedor(pesquisa, metodo_pesquisa);
+           Registro_fornecedor resultado_fornecedor = new Registro_fornecedor();
+           
+           for (int i= 0; i < fornecedor.size(); i++) {
+                resultado_fornecedor = fornecedor.get(i);
+                this.objeto_encontrado_na_busca = resultado_fornecedor; 
 
-           this.objeto_encontrado_na_busca = resultado_fornecedor; 
+                if (resultado_fornecedor != null) {
+                    lista.addElement(resultado_fornecedor.getNome()); 
+                    lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
+                    lista.addElement("Email: " + resultado_fornecedor.getEmail());
+                    lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
+                } else {
+                    lista.addElement("Nenhum resultado encontrado.");
+                }
 
-           if (resultado_fornecedor != null) {
-               lista.addElement(resultado_fornecedor.getNome()); 
-               lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
-               lista.addElement("Email: " + resultado_fornecedor.getEmail());
-               lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
-           } else {
-               lista.addElement("Nenhum resultado encontrado.");
+               
            }
-
+           
+           
        } else {
            lista.addElement("Tipo de pesquisa não selecionado.");
        }
