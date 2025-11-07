@@ -85,13 +85,21 @@ public class BuscarDAO {
             return null;
         }
 
-        sql = "SELECT * FROM " + tabela + " WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        if (pesquisa.equals("")){
+            sql = "SELECT * FROM " + tabela + " WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        }else if (tipo_selecionado.equals("Cliente")){
+            sql = "SELECT  * FROM cliente WHERE cpf_cliente = ?";
+        }else if(tipo_selecionado.equals("Funcionário")){
+            sql = "SELECT  * FROM funcionario WHERE cpf_func = ?";
+        }
         ArrayList<Registro_usuario> users = new ArrayList<>();
 
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            //stmt.setString(1, pesquisa);
+            if(sql.equals( "SELECT  * FROM cliente WHERE cpf_cliente = ?") || sql.equals("SELECT  * FROM funcionario WHERE cpf_func = ?")){
+                 stmt.setString(1, pesquisa);
+             }
             ResultSet resultado = stmt.executeQuery();
 
             while (resultado.next()) {
@@ -128,13 +136,20 @@ public class BuscarDAO {
         }
 
       
-        sql = "SELECT * FROM produto WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        if(pesquisa.equals("")){
+            sql = "SELECT * FROM produto WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        }else {
+            sql = "SELECT  * FROM produto WHERE nome_produto = ?";
+        }
         ArrayList<Registro_produto> produto = new ArrayList<>();
        
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            //stmt.setString(1, pesquisa);
+            if(sql.equals("SELECT  * FROM produto WHERE nome_produto = ?")){
+                stmt.setString(1, pesquisa);
+            }
+                    
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -165,13 +180,20 @@ public class BuscarDAO {
             return null;
         }
 
-        sql = "SELECT * FROM fornecedor WHERE " + coluna_busca + " like '%" + pesquisa + "%'";  
+        if(pesquisa.equals("")){
+                sql = "SELECT * FROM fornecedor WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
+        }else{
+                sql = "SELECT  * FROM fornecedor WHERE cnpj_fornecedor = ?";
+
+        }
         ArrayList<Registro_fornecedor> fornecedor = new ArrayList<>();
      
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            //stmt.setString(1, pesquisa);
+            if(sql.equals("SELECT  * FROM fornecedor WHERE cnpj_fornecedor = ?")){
+                    stmt.setString(1, pesquisa);
+            }    
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

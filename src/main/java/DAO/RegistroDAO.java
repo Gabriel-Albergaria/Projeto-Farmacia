@@ -184,6 +184,37 @@ public class RegistroDAO {
         return false;
     }
 
+    }
+    
+    public boolean atualizar_produto(Registro_produto produto_para_editar) {
+    
+    String sql = "UPDATE produto SET nome_produto = ?, preco_produto = ?, " + "quantidade_produto = ?";;
+
+  
+    try (Connection conexao = Conexao_farmacia.getConnection();
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+         
+        conexao.setAutoCommit(false);
+        
+        stmt.setString(1, produto_para_editar.getNome_produto());
+        stmt.setDouble(2, produto_para_editar.getPreco_produto());
+        stmt.setInt(3, produto_para_editar.getQuantidade_produto());
+
+
+        int linhas_afetadas = stmt.executeUpdate();
+  
+        if (linhas_afetadas > 0) {
+            conexao.commit(); 
+            return true;
+        } else {
+            conexao.rollback();
+            return false;
+        }
+    } catch (SQLException e) {
+        System.err.println("Erro ao atualizar registro: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
 
     }
 }
