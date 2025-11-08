@@ -201,6 +201,8 @@ public class BuscarDAO {
                 fornecedor_encontrado = new Registro_fornecedor();
                 fornecedor_encontrado.setNome(rs.getString("nome_fornecedor"));
                 fornecedor_encontrado.setCnpj(rs.getString("cnpj_fornecedor"));
+                fornecedor_encontrado.setEndereco(rs.getString("endereco_fornecedor"));
+                fornecedor_encontrado.setTelefone(rs.getString("telefone_fornecedor"));
                 fornecedor_encontrado.setEmail(rs.getString("email_fornecedor"));
                 fornecedor.add(fornecedor_encontrado);
 

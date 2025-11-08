@@ -218,4 +218,38 @@ public class RegistroDAO {
     }
 
     }
+    
+    public boolean atualizar_fornecedor(Registro_fornecedor fornecedor_para_editar) {
+    
+    String sql = "UPDATE fornecedor SET email_fornecedor = ?, endereco_fornecedor = ?, nome_fornecedor = ?, telefone_fornecedor = ? WHERE cnpj_fornecedor = ?" ;
+
+  
+    try (Connection conexao = Conexao_farmacia.getConnection();
+         PreparedStatement stmt = conexao.prepareStatement(sql)) {
+         
+        conexao.setAutoCommit(false);
+        
+        stmt.setString(1, fornecedor_para_editar.getEmail());
+        stmt.setString(2, fornecedor_para_editar.getEndereco());
+        stmt.setString(3, fornecedor_para_editar.getNome());
+        stmt.setString(4, fornecedor_para_editar.getTelefone());
+        stmt.setString(5, fornecedor_para_editar.getCnpj());
+
+
+        int linhas_afetadas = stmt.executeUpdate();
+  
+        if (linhas_afetadas > 0) {
+            conexao.commit(); 
+            return true;
+        } else {
+            conexao.rollback();
+            return false;
+        }
+    } catch (SQLException e) {
+        System.err.println("Erro ao atualizar registro: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+
+    }
 }

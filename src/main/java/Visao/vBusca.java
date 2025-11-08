@@ -256,7 +256,9 @@ public class vBusca extends javax.swing.JDialog {
                     lista.addElement(resultado_fornecedor.getNome()); 
                     lista.addElement("CNPJ: " + resultado_fornecedor.getCnpj());
                     lista.addElement("Email: " + resultado_fornecedor.getEmail());
+                    lista.addElement("Endereço: " + resultado_fornecedor.getEndereco());
                     lista.addElement("Telefone: " + resultado_fornecedor.getTelefone());
+                    
                 } else {
                     lista.addElement("Nenhum resultado encontrado.");
                 }
@@ -294,13 +296,16 @@ public class vBusca extends javax.swing.JDialog {
              this.but_buscar.doClick(); 
          } else if (this.objeto_encontrado_na_busca instanceof Registro_produto) {
              Registro_produto produto_para_editar = (Registro_produto) this.objeto_encontrado_na_busca;    
-             String tipo_pessoa_selecionado = cb_pessoa_selecionar.getSelectedItem().toString();
 
-             vEditarBuscaProduto tela_edicao_usuario = new vEditarBuscaProduto(this, true, produto_para_editar);
-             tela_edicao_usuario.setVisible(true);
+             vEditarBuscaProduto tela_edicao_produto = new vEditarBuscaProduto(this, true, produto_para_editar);
+             tela_edicao_produto.setVisible(true);
              this.but_buscar.doClick(); 
          } else if (this.objeto_encontrado_na_busca instanceof Registro_fornecedor) {
-             // ... (código para editar fornecedor) ...
+             Registro_fornecedor fornecedor_para_editar = (Registro_fornecedor) this.objeto_encontrado_na_busca;    
+
+             vEditarBuscaFornecedor tela_edicao_fornecedor = new vEditarBuscaFornecedor(this, true, fornecedor_para_editar);
+             tela_edicao_fornecedor.setVisible(true);
+             this.but_buscar.doClick();
          }
         
     }//GEN-LAST:event_EditarActionPerformed

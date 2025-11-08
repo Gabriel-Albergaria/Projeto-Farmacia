@@ -12,9 +12,11 @@ Visao\vCadastro$4$1.class
 Visao\vCadFornecedor.class
 DAO\BuscarDAO.class
 Visao\vBusca$7.class
+Visao\vEditarBuscaFornecedor$1.class
 DAO\RegistroDAO.class
 Visao\vEditarBuscaClienteFuncionario$1.class
 Visao\vLogin$2.class
+Visao\vEditarBuscaFornecedor.class
 Visao\vCadastro$4.class
 Visao\vAreaTrabalho$3.class
 Visao\vPrincipal.class
