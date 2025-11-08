@@ -252,4 +252,85 @@ public class RegistroDAO {
     }
 
     }
+    
+    public boolean excluir_usuario(String cpf, String tipo_pessoa) {
+        String sql = "";
+    
+        if (tipo_pessoa.equals("Cliente")) {
+            sql = "DELETE FROM cliente WHERE cpf_cliente = ?";
+        } else if (tipo_pessoa.equals("Funcionário")) {
+            sql = "DELETE FROM funcionario WHERE cpf_func = ?";
+        } else {
+            return false; 
+        }
+
+        try (Connection conexao = Conexao_farmacia.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            conexao.setAutoCommit(false);
+            stmt.setString(1, cpf);
+
+            int linhas_afetadas = stmt.executeUpdate();
+
+            if (linhas_afetadas > 0) {
+                conexao.commit(); 
+                return true;
+            } else {
+                conexao.rollback(); 
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir usuário: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean excluir_produto(int id_produto) {
+        String sql = "DELETE FROM produto WHERE id_produto = ?";
+
+        try (Connection conexao = Conexao_farmacia.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            conexao.setAutoCommit(false);
+            stmt.setInt(1, id_produto);
+
+            int linhas_afetadas = stmt.executeUpdate();
+
+            if (linhas_afetadas > 0) {
+                conexao.commit();
+                return true;
+            } else {
+                conexao.rollback();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir produto: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+    public boolean excluir_fornecedor(String cnpj) {
+        String sql = "DELETE FROM fornecedor WHERE cnpj_fornecedor = ?";
+
+        try (Connection conexao = Conexao_farmacia.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            conexao.setAutoCommit(false);
+            stmt.setString(1, cnpj);
+
+            int linhas_afetadas = stmt.executeUpdate();
+
+            if (linhas_afetadas > 0) {
+                conexao.commit();
+                return true;
+            } else {
+                conexao.rollback();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao excluir fornecedor: " + e.getMessage());
+            return false;
+        }
+    }
 }

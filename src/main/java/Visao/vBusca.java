@@ -51,6 +51,7 @@ public class vBusca extends javax.swing.JDialog {
         cb_pessoa_selecionar = new javax.swing.JComboBox<>();
         but_buscar = new javax.swing.JButton();
         Editar = new javax.swing.JButton();
+        but_excluir = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -102,6 +103,13 @@ public class vBusca extends javax.swing.JDialog {
             }
         });
 
+        but_excluir.setText("Excluir");
+        but_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                but_excluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -125,7 +133,9 @@ public class vBusca extends javax.swing.JDialog {
                         .addComponent(but_buscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
-                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117)
+                        .addComponent(but_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,7 +157,9 @@ public class vBusca extends javax.swing.JDialog {
                         .addGap(40, 40, 40)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
-                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                    .addComponent(but_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
         );
 
@@ -189,6 +201,7 @@ public class vBusca extends javax.swing.JDialog {
     }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
 
     private void but_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_buscarActionPerformed
+
        lista.clear();
        String pesquisa = txtPesquisa.getText().trim();
        String metodo_pesquisa = cbTipo.getSelectedItem().toString();
@@ -196,7 +209,8 @@ public class vBusca extends javax.swing.JDialog {
 
        BuscarDAO buscar = new BuscarDAO();
        
-
+       
+    
        this.objeto_encontrado_na_busca = null; 
        
        if (tipo_pessoa.equals("Cliente") || tipo_pessoa.equals("Funcionário")) {
@@ -280,35 +294,95 @@ public class vBusca extends javax.swing.JDialog {
     }//GEN-LAST:event_ListaMouseClicked
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-     
-         if (this.objeto_encontrado_na_busca == null) {
-             javax.swing.JOptionPane.showMessageDialog(this, "Nenhum item válido foi encontrado na busca.");
-             return;
-         }
+        String pesquisa = txtPesquisa.getText().trim();
+        if(pesquisa.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Pesquise especificadamente o que você deseja editar.");
+            return;
+        }
+        if (this.objeto_encontrado_na_busca == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nenhum item válido foi encontrado na busca.");
+            return;
+        }
 
-         if (this.objeto_encontrado_na_busca instanceof Registro_usuario) {
+        if (this.objeto_encontrado_na_busca instanceof Registro_usuario) {
 
-             Registro_usuario usuario_para_editar = (Registro_usuario) this.objeto_encontrado_na_busca;    
-             String tipo_pessoa_selecionado = cb_pessoa_selecionar.getSelectedItem().toString();
+            Registro_usuario usuario_para_editar = (Registro_usuario) this.objeto_encontrado_na_busca;    
+            String tipo_pessoa_selecionado = cb_pessoa_selecionar.getSelectedItem().toString();
 
-             vEditarBuscaClienteFuncionario tela_edicao_usuario = new vEditarBuscaClienteFuncionario(this, true, usuario_para_editar, tipo_pessoa_selecionado);
-             tela_edicao_usuario.setVisible(true);
-             this.but_buscar.doClick(); 
-         } else if (this.objeto_encontrado_na_busca instanceof Registro_produto) {
-             Registro_produto produto_para_editar = (Registro_produto) this.objeto_encontrado_na_busca;    
+            vEditarBuscaClienteFuncionario tela_edicao_usuario = new vEditarBuscaClienteFuncionario(this, true, usuario_para_editar, tipo_pessoa_selecionado);
+            tela_edicao_usuario.setVisible(true);
+            this.but_buscar.doClick(); 
+        } else if (this.objeto_encontrado_na_busca instanceof Registro_produto) {
+            Registro_produto produto_para_editar = (Registro_produto) this.objeto_encontrado_na_busca;    
 
-             vEditarBuscaProduto tela_edicao_produto = new vEditarBuscaProduto(this, true, produto_para_editar);
-             tela_edicao_produto.setVisible(true);
-             this.but_buscar.doClick(); 
-         } else if (this.objeto_encontrado_na_busca instanceof Registro_fornecedor) {
-             Registro_fornecedor fornecedor_para_editar = (Registro_fornecedor) this.objeto_encontrado_na_busca;    
+            vEditarBuscaProduto tela_edicao_produto = new vEditarBuscaProduto(this, true, produto_para_editar);
+            tela_edicao_produto.setVisible(true);
+            this.but_buscar.doClick(); 
+        } else if (this.objeto_encontrado_na_busca instanceof Registro_fornecedor) {
+            Registro_fornecedor fornecedor_para_editar = (Registro_fornecedor) this.objeto_encontrado_na_busca;    
 
-             vEditarBuscaFornecedor tela_edicao_fornecedor = new vEditarBuscaFornecedor(this, true, fornecedor_para_editar);
-             tela_edicao_fornecedor.setVisible(true);
-             this.but_buscar.doClick();
-         }
+            vEditarBuscaFornecedor tela_edicao_fornecedor = new vEditarBuscaFornecedor(this, true, fornecedor_para_editar);
+            tela_edicao_fornecedor.setVisible(true);
+            this.but_buscar.doClick();
+        }
         
     }//GEN-LAST:event_EditarActionPerformed
+
+    private void but_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_excluirActionPerformed
+        String pesquisa = txtPesquisa.getText().trim();
+        if(pesquisa.equals("")){
+            javax.swing.JOptionPane.showMessageDialog(this, "Pesquise especificadamente o que você deseja excluir.");
+            return;      
+        }
+        if (this.objeto_encontrado_na_busca == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Nenhum item válido foi encontrado na busca.");
+            return;
+        }
+
+        int resposta = javax.swing.JOptionPane.showConfirmDialog(
+        this, 
+        "Tem certeza que deseja excluir este registro?\nEsta ação não pode ser desfeita.",
+        "Confirmação de Exclusão", 
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.WARNING_MESSAGE
+        );
+
+ 
+        
+        if (resposta != javax.swing.JOptionPane.YES_OPTION) {
+            return; 
+        }
+
+        DAO.RegistroDAO dao = new DAO.RegistroDAO(); 
+        boolean teste_excluir = false; 
+        String tipo_pessoa_selecionado = cb_pessoa_selecionar.getSelectedItem().toString();
+
+
+
+        if (this.objeto_encontrado_na_busca instanceof Registro_usuario) {
+
+            Registro_usuario usuario = (Registro_usuario) this.objeto_encontrado_na_busca;
+            teste_excluir = dao.excluir_usuario(usuario.getCpf(), tipo_pessoa_selecionado);
+
+        } else if (this.objeto_encontrado_na_busca instanceof Registro_produto) {
+
+            Registro_produto produto = (Registro_produto) this.objeto_encontrado_na_busca;
+            teste_excluir = dao.excluir_produto(produto.getId());
+
+        } else if (this.objeto_encontrado_na_busca instanceof Registro_fornecedor) {
+
+            Registro_fornecedor fornecedor = (Registro_fornecedor) this.objeto_encontrado_na_busca;
+            teste_excluir = dao.excluir_fornecedor(fornecedor.getCnpj());
+        }
+
+        if (teste_excluir) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Falha ao excluir o registro.", "Erro", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
+        this.but_buscar.doClick();
+    }//GEN-LAST:event_but_excluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -357,6 +431,7 @@ public class vBusca extends javax.swing.JDialog {
     private javax.swing.JButton Editar;
     private javax.swing.JList<String> Lista;
     private javax.swing.JButton but_buscar;
+    private javax.swing.JButton but_excluir;
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JComboBox<String> cb_pessoa_selecionar;
     private javax.swing.JLabel jLabel1;

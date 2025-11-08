@@ -20,6 +20,7 @@ Visao\vEditarBuscaFornecedor.class
 Visao\vCadastro$4.class
 Visao\vAreaTrabalho$3.class
 Visao\vPrincipal.class
+Visao\vBusca$8$1.class
 Controle\Farmacia.class
 Visao\vBusca$5.class
 Visao\vBusca$1.class
@@ -29,13 +30,13 @@ Visao\vPrincipal$2.class
 DAO\Conexao_farmacia.class
 Visao\vBusca.class
 Visao\vCadFornecedor$1.class
+Visao\vBusca$8.class
 Modelo\Registro_usuario.class
 Visao\vCadastro$3.class
 Visao\vCadastroProdutos$1.class
 Visao\vBusca$2.class
 Visao\vPrincipal$3.class
 Visao\vAreaTrabalho$2.class
-Visao\vBusca$7$1.class
 Visao\vAreaTrabalho.class
 Visao\vLogin.class
 Visao\vEditarBuscaClienteFuncionario$2.class

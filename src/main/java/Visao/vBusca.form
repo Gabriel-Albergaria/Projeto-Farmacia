@@ -95,6 +95,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="Editar" min="-2" pref="161" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                          <Component id="but_excluir" min="-2" pref="149" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="136" max="32767" attributes="0"/>
@@ -124,7 +126,10 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="Editar" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="Editar" pref="71" max="32767" attributes="0"/>
+                      <Component id="but_excluir" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -198,6 +203,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EditarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="but_excluir">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Excluir"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="but_excluirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
