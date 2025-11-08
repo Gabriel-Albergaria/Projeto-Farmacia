@@ -184,7 +184,7 @@ public class vBusca extends javax.swing.JDialog {
             cbTipo.addItem("CNPJ");
         }else if(pessoa.equals("Produto")){
             cbTipo.removeAllItems();
-            cbTipo.addItem("NOME");
+            cbTipo.addItem("ID");
         }
     }//GEN-LAST:event_cb_pessoa_selecionarActionPerformed
 
@@ -231,6 +231,7 @@ public class vBusca extends javax.swing.JDialog {
                this.objeto_encontrado_na_busca = resultado_produto;
            
                 if (resultado_produto != null) {
+                    lista.addElement("ID: " + resultado_produto.getId());
                     lista.addElement(resultado_produto.getNome_produto());
                     lista.addElement("Preço: R$ " + resultado_produto.getPreco_produto());
                     lista.addElement("Qtd. em Estoque: " + resultado_produto.getQuantidade_produto());

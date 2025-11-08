@@ -188,7 +188,7 @@ public class RegistroDAO {
     
     public boolean atualizar_produto(Registro_produto produto_para_editar) {
     
-    String sql = "UPDATE produto SET nome_produto = ?, preco_produto = ?, " + "quantidade_produto = ?";;
+    String sql = "UPDATE produto SET nome_produto = ?, preco_produto = ?, quantidade_produto = ? WHERE id_produto = ?" ;
 
   
     try (Connection conexao = Conexao_farmacia.getConnection();
@@ -199,6 +199,7 @@ public class RegistroDAO {
         stmt.setString(1, produto_para_editar.getNome_produto());
         stmt.setDouble(2, produto_para_editar.getPreco_produto());
         stmt.setInt(3, produto_para_editar.getQuantidade_produto());
+        stmt.setInt(4, produto_para_editar.getId());
 
 
         int linhas_afetadas = stmt.executeUpdate();

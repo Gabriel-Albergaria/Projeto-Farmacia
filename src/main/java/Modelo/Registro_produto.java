@@ -9,12 +9,21 @@ package Modelo;
  * @author Gabriel
  */
 public class Registro_produto {
+    private int id;
     private double preco_produto;
     private String nome_produto;
     private int quantidade_produto;
     
 
     public Registro_produto() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

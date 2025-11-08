@@ -26,10 +26,12 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
     }
      private void preencher_campos() {
         if (this.produto_para_editar != null) {
+            txt_id.setText(String.valueOf(produto_para_editar.getId()));
             txt_mudar_nome.setText(this.produto_para_editar.getNome_produto());
             txt_mudar_preco.setText(String.valueOf(this.produto_para_editar.getPreco_produto()));
             txt_mudar_quantidade.setText(String.valueOf(this.produto_para_editar.getQuantidade_produto()));
-
+            
+            txt_id.setEnabled(false);
             
      
             
@@ -52,6 +54,8 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
         txt_mudar_quantidade = new javax.swing.JFormattedTextField();
         lbl_quantidade = new javax.swing.JLabel();
         but_confirmar = new javax.swing.JButton();
+        lbl_id = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,6 +74,8 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
             }
         });
 
+        lbl_id.setText("ID:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,12 +89,14 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lbl_nome)
-                                    .addComponent(lbl_preco))
+                                    .addComponent(lbl_preco)
+                                    .addComponent(lbl_id))
                                 .addGap(51, 51, 51)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_mudar_quantidade)
                                     .addComponent(txt_mudar_preco)
-                                    .addComponent(txt_mudar_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)))))
+                                    .addComponent(txt_mudar_nome, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(340, 340, 340)
                         .addComponent(but_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -97,7 +105,11 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_id)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_mudar_preco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_preco))
@@ -171,9 +183,11 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton but_confirmar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_id;
     private javax.swing.JLabel lbl_nome;
     private javax.swing.JLabel lbl_preco;
     private javax.swing.JLabel lbl_quantidade;
+    private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_mudar_nome;
     private javax.swing.JFormattedTextField txt_mudar_preco;
     private javax.swing.JFormattedTextField txt_mudar_quantidade;

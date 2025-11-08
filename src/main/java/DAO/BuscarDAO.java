@@ -128,8 +128,8 @@ public class BuscarDAO {
         Registro_produto produto_encontrado = null;
         String coluna_busca = "";
 
-          if (tipo_selecionado.equals("NOME")) {
-            coluna_busca = "nome_produto";
+          if (tipo_selecionado.equals("ID")) {
+            coluna_busca = "id_produto";
         } else {
             System.err.println("Método de pesquisa ('" + tipo_selecionado + "') não suportado para Produto.");
             return null; 
@@ -139,14 +139,14 @@ public class BuscarDAO {
         if(pesquisa.equals("")){
             sql = "SELECT * FROM produto WHERE " + coluna_busca + " like '%" + pesquisa + "%'";
         }else {
-            sql = "SELECT  * FROM produto WHERE nome_produto = ?";
+            sql = "SELECT  * FROM produto WHERE id_produto = ?";
         }
         ArrayList<Registro_produto> produto = new ArrayList<>();
        
         try (Connection conexao = Conexao_farmacia.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            if(sql.equals("SELECT  * FROM produto WHERE nome_produto = ?")){
+            if(sql.equals("SELECT  * FROM produto WHERE id_produto = ?")){
                 stmt.setString(1, pesquisa);
             }
                     
@@ -154,6 +154,7 @@ public class BuscarDAO {
 
             while (rs.next()) {
                 produto_encontrado = new Registro_produto();
+                produto_encontrado.setId(rs.getInt("id_produto"));
                 produto_encontrado.setNome_produto(rs.getString("nome_produto"));
                 produto_encontrado.setPreco_produto(rs.getDouble("preco_produto"));
                 produto_encontrado.setQuantidade_produto(rs.getInt("quantidade_produto"));
