@@ -19,6 +19,7 @@ public class vCadFornecedor extends javax.swing.JDialog {
     public vCadFornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

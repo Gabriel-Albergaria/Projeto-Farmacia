@@ -19,6 +19,8 @@ public class vLogin extends javax.swing.JDialog {
     public vLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        
         this.tela_antiga = (vPrincipal) parent;
         setLocationRelativeTo(parent);
         

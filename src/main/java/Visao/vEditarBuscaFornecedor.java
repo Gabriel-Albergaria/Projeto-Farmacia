@@ -18,6 +18,7 @@ public class vEditarBuscaFornecedor extends javax.swing.JDialog {
     public vEditarBuscaFornecedor(java.awt.Dialog parent, boolean modal, Registro_fornecedor fornecedor_enviado) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     
         this.fornecedor_editar = fornecedor_enviado;
         preencher_campos();

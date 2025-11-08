@@ -26,6 +26,7 @@ public class vBusca extends javax.swing.JDialog {
     public vBusca(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         
         lista = new DefaultListModel<>();
         Lista.setModel(lista);

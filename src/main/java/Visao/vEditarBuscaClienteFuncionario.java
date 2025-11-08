@@ -23,6 +23,7 @@ public class vEditarBuscaClienteFuncionario extends javax.swing.JDialog {
     public vEditarBuscaClienteFuncionario(java.awt.Dialog parent, boolean modal, Registro_usuario usuario_enviado, String tipo_pessoa_enviado) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
      
         this.usuario_para_editar = usuario_enviado;
         this.tipo_pessoa = tipo_pessoa_enviado; 

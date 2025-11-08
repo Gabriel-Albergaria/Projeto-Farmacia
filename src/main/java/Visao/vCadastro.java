@@ -20,6 +20,8 @@ public class vCadastro extends javax.swing.JDialog {
     public vCadastro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        
         setLocationRelativeTo(null);
     }
     /**

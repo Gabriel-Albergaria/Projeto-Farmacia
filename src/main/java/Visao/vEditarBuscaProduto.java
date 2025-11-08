@@ -19,6 +19,7 @@ public class vEditarBuscaProduto extends javax.swing.JDialog {
     public vEditarBuscaProduto(java.awt.Dialog parent, boolean modal, Registro_produto produto_enviado) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
      
         this.produto_para_editar = produto_enviado;
         

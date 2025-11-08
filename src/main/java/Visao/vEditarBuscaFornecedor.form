@@ -56,11 +56,9 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txt_mudar_cnpj" pref="133" max="32767" attributes="0"/>
-                                  <Component id="txt_mudar_email" max="32767" attributes="0"/>
-                                  <Component id="txt_mudar_endereco" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txt_mudar_cnpj" pref="133" max="32767" attributes="0"/>
+                              <Component id="txt_mudar_email" max="32767" attributes="0"/>
+                              <Component id="txt_mudar_endereco" max="32767" attributes="0"/>
                               <Component id="txt_mudar_nome" pref="141" max="32767" attributes="0"/>
                               <Component id="txt_mudar_telefone" alignment="0" max="32767" attributes="0"/>
                           </Group>

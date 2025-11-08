@@ -4,6 +4,8 @@
  */
 package Visao;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Gabriel
@@ -15,6 +17,10 @@ public class vAreaTrabalho extends javax.swing.JFrame {
      */
     public vAreaTrabalho() {
         initComponents();
+        
+    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    this.setLocationRelativeTo(null);
+        
         
     }
 
